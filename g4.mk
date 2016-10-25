@@ -133,14 +133,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
-# Camera
-PRODUCT_PACKAGES += \
-    Snap
-
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
-
 # Thermal
 PRODUCT_PACKAGES += \
     thermanager
