@@ -1,0 +1,22 @@
+[
+  {
+    "repository":  "android_kernel_lge_msm8992",
+    "target_path": "kernel/lge/msm8992",
+    "remote":      "cm"
+  },
+  {
+    "repository":  "android_device_qcom_common",
+    "target_path": "device/qcom/common",
+    "remote":      "cm"
+  },
+  {
+    "repository":  "android_hardware_sony_thermanager",
+    "target_path": "hardware/sony/thermanager",
+    "remote":      "cm"
+  },
+  {
+    "repository":  "android_hardware_sony_timekeep",
+    "target_path": "hardware/sony/timekeep",
+    "remote":      "cm"
+  }
+]
