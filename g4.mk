@@ -132,6 +132,10 @@ PRODUCT_COPY_FILES += \
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
+	
+# Camera
+PRODUCT_PACKAGES += \
+    Camero
 
 # Thermal
 PRODUCT_PACKAGES += \
