@@ -243,6 +243,10 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     libstagefright_soft_flacdec
 
+# DRM
+PRODUCT_PACKAGES += \
+    libshims_wvm
+
 # Power
 PRODUCT_PACKAGES += \
     power.msm8992
