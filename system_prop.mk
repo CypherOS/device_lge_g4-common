@@ -88,10 +88,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.add_power_save=1 \
     persist.telephony.oosisdc=false
 
-# Factory Reset Protection
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.frp.pst=/dev/block/bootdevice/by-name/persistent
-
 # Sensor debugging
 # Valid settings (and presumably what they mean):
 #   0      - off
