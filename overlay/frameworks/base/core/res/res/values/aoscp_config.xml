@@ -33,4 +33,8 @@
          config to 7. -->
     <integer name="config_deviceHardwareKeys">64</integer>
 
+    <!-- Defines the sysfs attribute path used by pocket bridge
+        to communicate pocket state to the pocket judge kernel driver. -->
+    <string name="config_pocketBridgeSysfsInpocket">/sys/kernel/pocket_judge/inpocket</string>
+
 </resources>
