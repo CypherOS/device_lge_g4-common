@@ -2,25 +2,25 @@
   {
     "repository":  "kernel_lge_msm8992",
     "target_path": "kernel/lge/msm8992",
-    "branch":      "n7.1",
+    "branch":      "nougat-mr2",
     "remote":      "aoscp"
   },
   {
     "repository":  "device_qcom_common",
     "target_path": "device/qcom/common",
-    "branch":      "n7.1",
+    "branch":      "nougat-mr2",
     "remote":      "aoscp"
   },
   {
     "repository":  "hardware_sony_thermanager",
     "target_path": "hardware/sony/thermanager",
-    "branch":      "n7.1",
+    "branch":      "nougat-mr2",
     "remote":      "aoscp"
   },
   {
     "repository":  "hardware_sony_timekeep",
     "target_path": "hardware/sony/timekeep",
-    "branch":      "n7.1",
+    "branch":      "nougat-mr2",
     "remote":      "aoscp"
   }
 ]
