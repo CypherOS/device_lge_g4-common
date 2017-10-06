@@ -174,6 +174,8 @@ public:
 
 	int DelExtProp(ipa_ip_type ip_type);
 
+	enum ipa_hw_type GetIPAVer();
+
 	int Init(void);
 
 	inline bool isPrivateSubnet(uint32_t ip_addr)
@@ -269,6 +271,7 @@ public:
 	static const char *DEVICE_NAME_ODU;
 
 private:
+	enum ipa_hw_type ver;
 	static IPACM_Config *pInstance;
 	static const char *DEVICE_NAME;
 	IPACM_Config(void);

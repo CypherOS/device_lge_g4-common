@@ -80,6 +80,7 @@ IPACM_Config::IPACM_Config()
 	memset(&rt_tbl_eth_bridge_wlan_wlan_v4, 0, sizeof(rt_tbl_eth_bridge_wlan_wlan_v4));
 	memset(&rt_tbl_eth_bridge_usb_wlan_v6, 0, sizeof(rt_tbl_eth_bridge_usb_wlan_v6));
 	memset(&rt_tbl_eth_bridge_wlan_wlan_v6, 0, sizeof(rt_tbl_eth_bridge_wlan_wlan_v6));
+        ver = IPA_HW_None;
 
 	qmap_id = ~0;
 
@@ -708,4 +709,21 @@ int IPACM_Config::DelExtProp(ipa_ip_type ip_type)
 	}
 
 	return IPACM_SUCCESS;
+}
+
+enum ipa_hw_type IPACM_Config::GetIPAVer()
+{
+	int ret;
+
+	if(ver != IPA_HW_None)
+		return ver;
+
+	ret = ioctl(m_fd, IPA_IOC_GET_HW_VERSION, &ver);
+	if(ret != 0)
+	{
+		IPACMERR("Failed to get IPA version with error %d.\n", ret);
+		return IPA_HW_None;
+	}
+	IPACMDBG_H("IPA version is %d.\n", ver);
+	return ver;
 }

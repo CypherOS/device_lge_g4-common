@@ -1543,7 +1543,7 @@ int IPACM_Lan::handle_eth_hdr_init(uint8_t *mac_addr)
 
 								if (strlcat(pHeaderDescriptor->hdr[0].name, IPA_ETH_HDR_NAME_v4, sizeof(pHeaderDescriptor->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 								{
-									IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeaderDescriptor->hdr[0].name));
+									IPACMERR(" header name construction failed exceed length (%lu)\n", strlen(pHeaderDescriptor->hdr[0].name));
 									res = IPACM_FAILURE;
 									goto fail;
 								}
@@ -1551,7 +1551,7 @@ int IPACM_Lan::handle_eth_hdr_init(uint8_t *mac_addr)
 								snprintf(index,sizeof(index), "%d", header_name_count);
 								if (strlcat(pHeaderDescriptor->hdr[0].name, index, sizeof(pHeaderDescriptor->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 								{
-									IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeaderDescriptor->hdr[0].name));
+									IPACMERR(" header name construction failed exceed length (%lu)\n", strlen(pHeaderDescriptor->hdr[0].name));
 									res = IPACM_FAILURE;
 									goto fail;
 								}
@@ -1634,14 +1634,14 @@ int IPACM_Lan::handle_eth_hdr_init(uint8_t *mac_addr)
 
 				if (strlcat(pHeaderDescriptor->hdr[0].name, IPA_ETH_HDR_NAME_v6, sizeof(pHeaderDescriptor->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 				{
-					IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeaderDescriptor->hdr[0].name));
+					IPACMERR(" header name construction failed exceed length (%lu)\n", strlen(pHeaderDescriptor->hdr[0].name));
 					res = IPACM_FAILURE;
 					goto fail;
 				}
 				snprintf(index,sizeof(index), "%d", header_name_count);
 				if (strlcat(pHeaderDescriptor->hdr[0].name, index, sizeof(pHeaderDescriptor->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 				{
-					IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeaderDescriptor->hdr[0].name));
+					IPACMERR(" header name construction failed exceed length (%lu)\n", strlen(pHeaderDescriptor->hdr[0].name));
 					res = IPACM_FAILURE;
 					goto fail;
 				}
@@ -1894,12 +1894,16 @@ int IPACM_Lan::handle_eth_client_route_rule(uint8_t *mac_addr, ipa_ip_type iptyp
 				if (IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].if_cat == ODU_IF)
 				rt_rule_entry->rule.hdr_hdl = ODU_hdr_hdl_v4;
 
-			    if (false == m_routing.AddRoutingRule(rt_rule))
-  	            {
-  	          	            IPACMERR("Routing rule addition failed!\n");
-  	          	            free(rt_rule);
-  	          	            return IPACM_FAILURE;
-			    }
+				if(IPACM_Iface::ipacmcfg->GetIPAVer() >= IPA_HW_MAX)
+				{
+					rt_rule_entry->rule.hashable = true;
+				}
+
+                                if (false == m_routing.AddRoutingRule(rt_rule)) {
+                                        IPACMERR("Routing rule addition failed!\n");
+                                        free(rt_rule);
+                                        return IPACM_FAILURE;
+                                }
 
 			    /* copy ipv4 RT hdl */
 		        get_client_memptr(eth_client, eth_index)->eth_rt_hdl[tx_index].eth_rt_rule_hdl_v4 =
@@ -3670,7 +3674,7 @@ int IPACM_Lan::add_lan2lan_hdr(ipa_ip_type iptype, uint8_t* src_mac, uint8_t* ds
 				snprintf(index,sizeof(index), "%d", j);
 				if (strlcat(pHeader->hdr[0].name, index, sizeof(pHeader->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 				{
-					IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeader->hdr[0].name));
+					IPACMERR(" header name construction failed exceed length (%lu)\n", strlen(pHeader->hdr[0].name));
 					res = IPACM_FAILURE;
 					goto fail;
 				}
@@ -3757,7 +3761,7 @@ int IPACM_Lan::add_lan2lan_hdr(ipa_ip_type iptype, uint8_t* src_mac, uint8_t* ds
 				snprintf(index,sizeof(index), "%d", j);
 				if (strlcat(pHeader->hdr[0].name, index, sizeof(pHeader->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 				{
-					IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeader->hdr[0].name));
+					IPACMERR(" header name construction failed exceed length (%lu)\n", strlen(pHeader->hdr[0].name));
 					res = IPACM_FAILURE;
 					goto fail;
 				}
