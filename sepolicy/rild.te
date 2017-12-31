@@ -1,5 +1,5 @@
 allow rild servicemanager:binder { call };
-#allow rild init:binder { transfer };
+#allow rild init:binder { transfer call };
 #allow rild rild:socket { ioctl };
 allow rild system_data_file:file { read };
 allow rild system_data_file:file { open };
@@ -7,3 +7,5 @@ allow rild socket_device:dir { write };
 allow rild socket_device:sock_file { create };
 allow rild socket_device:sock_file { write };
 allow rild default_android_service:service_manager { find };
+allow rild socket_device:dir { remove_name add_name };
+allow rild socket_device:sock_file { unlink };
