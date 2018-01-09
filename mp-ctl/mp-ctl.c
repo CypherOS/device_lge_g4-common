@@ -4028,7 +4028,7 @@ int mpctl_server_init()
     return 1;
 
 error:
-    QLOGE("Unable to create control service (stage=%d, rc=%d)", stage, rc);
+    QLOGV("Unable to create control service (stage=%d, rc=%d)", stage, rc);
     if (comsoc != -1) {
         close(comsoc);
         comsoc = -1;
