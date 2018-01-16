@@ -46,10 +46,10 @@ on early-init
 
     # Ril sockets
     mkdir /dev/socket/netmgr 0750 radio radio
-    mkdir /dev/socket/rild 660 root radio
-    mkdir /dev/socket/rild-debug 660 radio system
-    mkdir /dev/socket/qmux_radio/rild_oem0 660 radio system
-    mkdir /dev/socket/qmux_radio/qmux_client_socket 660 radio system
+    mkdir /dev/socket/rild 0660 root radio
+    mkdir /dev/socket/rild-debug 0660 radio system
+    touch /dev/socket/qmux_radio/rild_oem0 0666 radio system
+    touch /dev/socket/qmux_radio/qmux_client_socket 0666 radio system
 
 on early-fs
     symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
@@ -493,6 +493,7 @@ on post-fs-data
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
+    mkdir /etc/acdbdata//msm8994-tomtom-snd-card
 
     # Create directory used by the DASH client
     mkdir /data/misc/dash 0770 media audio
