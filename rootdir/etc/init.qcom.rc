@@ -46,10 +46,10 @@ on early-init
 
     # Ril sockets
     mkdir /dev/socket/netmgr 0750 radio radio
-    mkdir /dev/socket/rild 660 root radio
-    mkdir /dev/socket/rild-debug 660 radio system
-    mkdir /dev/socket/qmux_radio/rild_oem0 660 radio system
-    mkdir /dev/socket/qmux_radio/qmux_client_socket 660 radio system
+    mkdir /dev/socket/rild 0660 root radio
+    mkdir /dev/socket/rild-debug 0660 radio system
+    touch /dev/socket/qmux_radio/rild_oem0 0666 radio system
+    touch /dev/socket/qmux_radio/qmux_client_socket 0666 radio system
 
 on early-fs
     symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
@@ -469,6 +469,9 @@ on post-fs-data
     mkdir /data/misc/ipa 0700 net_admin net_admin
 
     mkdir /data/misc/bluetooth 0771 bluetooth bluetooth
+
+    mkdir /cust/audio 0777 audio audio
+    touch /cust/audio/Bluetooth_cal.acdb 0777 audio audio
 
     # Create the directories used by the Wireless subsystem
     mkdir /data/misc/wifi 0770 wifi wifi

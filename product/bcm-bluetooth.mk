@@ -2,7 +2,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     bluetooth.chip.vendor=brcm \
     qcom.bluetooth.soc=rome \
     ro.bt.bdaddr_path="/data/misc/bluetooth/bdaddr" \
-    persist.bt.enableAptXHD=true
+    persist.bt.enableAptXHD=true \
+    persist.audio.calfile0=/etc/acdbdata/Bluetooth_cal.acdb
 
 # Bluetooth
 PRODUCT_PACKAGES += \
