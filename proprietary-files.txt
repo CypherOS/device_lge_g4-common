@@ -624,6 +624,7 @@ vendor/lib/libmmcamera_imx234_eeprom.so
 vendor/lib/libqmiservices.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libqmi.so
+<<<<<<< HEAD
 vendor/lib/libchromatix_t4ka3_cpp_liveshot_open.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmm-color-convertor.so
@@ -641,6 +642,78 @@ vendor/lib/libadsprpc.so
 vendor/lib/libchromatix_imx234_snapshot_panorama.so
 vendor/lib/libasn1crt.so
 vendor/lib/libOmxWmaDec.so
+=======
+vendor/lib/libsmemlog.so
+vendor/lib/libvoice-svc.so
+
+# GPS
+bin/location-mq
+bin/loc_launcher
+<<<<<<< HEAD
+bin/gpsone_daemon
+bin/location-mq
+etc/permissions/com.qualcomm.location.xml
+lib/libloc_api_v02.so
+lib/libloc_ds_api.so
+=======
+bin/lowi-server
+bin/xtwifi-client
+bin/xtwifi-inet-agent
+etc/permissions/com.qualcomm.location.xml
+-lib/libloc_api_v02.so
+-lib/libloc_ds_api.so
+vendor/bin/slim_ap_daemon
+vendor/lib/hw/flp.default.so
+vendor/lib/libflp.so
+>>>>>>> d3c4b21... clark: gps: kang from ether
+vendor/lib/libalarmservice_jni.so
+vendor/lib/libgeofence.so
+vendor/lib/libizat_core.so
+vendor/lib/liblbs_core.so
+vendor/lib/libloc_ext.so
+vendor/lib/liblocationservice.so
+<<<<<<< HEAD
+vendor/lib/libquipc_os_api.so
+vendor/lib/libulp2.so
+lib/libloc_eng.so
+lib/hw/gps.default.so
+lib/libgps.utils.so
+lib/libloc_core.so
+vendor/lib/libloc_xtra.so
+=======
+vendor/lib/liblowi_client.so
+vendor/lib/libquipc_os_api.so
+vendor/lib/libquipc_ulp_adapter.so
+vendor/lib/libulp2.so
+vendor/lib/libxtadapter.so
+vendor/lib/libxtwifi_ulp_adaptor.so
+vendor/lib/libxtwifi_zpp_adaptor.so
+>>>>>>> d3c4b21... clark: gps: kang from ether
+
+# Adreno GPU
+etc/firmware/a225p5_pm4.fw
+etc/firmware/a225_pfp.fw
+etc/firmware/a225_pm4.fw
+etc/firmware/a300_pfp.fw
+etc/firmware/a300_pm4.fw
+etc/firmware/a330_pfp.fw
+etc/firmware/a330_pm4.fw
+etc/firmware/a420_pfp.fw
+etc/firmware/a420_pm4.fw
+etc/firmware/leia_pfp_470.fw
+etc/firmware/leia_pm4_470.fw
+vendor/lib/libC2D2.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libbccQTI.so
+vendor/lib/libc2d30-a3xx.so
+vendor/lib/libc2d30-a4xx.so
+vendor/lib/libCB.so
+vendor/lib/libEGL_adreno.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-glnext.so
+vendor/lib/libllvm-qcom.so
+vendor/lib/libOpenCL.so
+>>>>>>> 5c79f9d... Use stock gps libs for now
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/libdrmtime.so
 vendor/lib/libmmcamera_cac2_lib.so
@@ -719,6 +792,7 @@ lib/libmmcamera_interface.so
 lib/liblgmda.so
 lib/hw/wbc_hal.default.so
 lib/hw/sensors.msm8992.so
+<<<<<<< HEAD
 lib/hw/lgkm.default.so
 lib/hw/lgkm.msm8992.so
 lib/libalmcaswrap.so
@@ -765,3 +839,12 @@ etc/permissions/izat.xt.srv.xml
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 etc/permissions/com.qti.snapdragon.sdk.display.xml
+=======
+vendor/lib/libsubsystem_control.so
+vendor/lib/libSubSystemShutdown.so
+lib64/hw/sensorhub.msm8992.so
+vendor/lib/libsensor1.so
+
+# Wat - weird files
+bin/ssr_setup
+>>>>>>> d3c4b21... clark: gps: kang from ether
