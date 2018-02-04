@@ -33,6 +33,12 @@
          config to 7. -->
     <integer name="config_deviceHardwareKeys">64</integer>
 
+    <!-- Does the device supports fast charging -->
+    <bool name="config_FastChargingLedSupported">true</bool>
+
+    <!-- Doze Addon: should the TYPE_PROXIMITY sensor be used as a pulse signal. -->
+    <bool name="config_dozePulseHandWave">false</bool>
+
     <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
     <string name="config_pocketBridgeSysfsInpocket">/sys/kernel/pocket_judge/inpocket</string>
