@@ -49,7 +49,6 @@ tmpfs                               u:object_r:temp_device:s0
 
 /system/bin/ip                      u:object_r:fs:s0
 /system/bin/iptables                u:object_r:fs:s0
-/system/bin/sh                      u:object_r:shell_ex:s0
 /system/bin/perfd                   u:object_r:fs:s0
 /system/bin/sysinit                 u:object_r:fs:s0
 /system/bin/tc                      u:object_r:fs:s0
@@ -104,7 +103,5 @@ tmpfs                               u:object_r:temp_device:s0
 /data/misc/camera/cam_socket[0-9]   u:object_r:cam_file:s0
 
 /data/system_de/0/spblob/0000000000000000.handle u:object_r:system_crypt_file:s0
-
-/mnt/media_rw(/.*)?                 u:object_r:unlabeled:s0
 
 /firmware/image/kmota.mdt           u:object_r:fw_file:s0

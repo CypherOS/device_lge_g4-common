@@ -2,4 +2,4 @@ allow surfaceflinger device:chr_file { ioctl };
 allow surfaceflinger sysfs:file { read write };
 allow surfaceflinger sysfs_graphics:file { write read };
 allow surfaceflinger persist_device:dir { search };
-allow surfaceflinger unlabeled:dir { search };
+allow surfaceflinger mnt_media_rw_file:dir { search };

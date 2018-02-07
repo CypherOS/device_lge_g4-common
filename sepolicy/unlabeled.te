@@ -1,1 +1,1 @@
-allow unlabeled unlabeled:filesystem { associate };
+allow unlabeled mnt_media_rw_file:filesystem { associate };

@@ -33,7 +33,7 @@ allow init qmuxd_socket:sock_file { write };
 allow init qmux:unix_stream_socket { connectto };
 allow init rmnet_device:chr_file { write };
 allow init servicemanager:binder { call transfer };
-#allow init shell_ex:file { execute_no_trans };
+#allow init shell_exec:file { execute_no_trans };
 allow init smem_log_device:chr_file { ioctl write };
 allow init socket_device:sock_file { create getattr setattr unlink write };
 allow init ssd_block_device:blk_file { write };
