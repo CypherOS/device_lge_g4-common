@@ -1,1 +1,0 @@
-allow proc proc:file { write };

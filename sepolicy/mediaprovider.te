@@ -1,3 +1,0 @@
-allow mediaprovider mnt_media_rw_file:dir { getattr search read open };
-allow mediaprovider mnt_media_rw_file:file { getattr };
-allow mediaprovider emulated_block_device:dir { getattr search read open };
