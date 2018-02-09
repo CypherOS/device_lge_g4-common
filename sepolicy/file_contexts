@@ -12,6 +12,7 @@
 # Data files
 /data/misc/perfd(/.*)?         u:object_r:perfd_data_file:s0
 /data/misc/radio(/.*)?         u:object_r:radio_data_file:s0
+/system/etc/motorola(/.*)?     u:object_r:radio_data_file:s0
 /data/misc/location(/.*)?      u:object_r:location_data_file:s0
 /data/time(/.*)?               u:object_r:time_data_file:s0
 /data/ramdump(/.*)?            u:object_r:ramdump_data_file:s0
@@ -69,6 +70,8 @@
 ## Radio related
 # modem driver
 /dev/mdm                               u:object_r:radio_device:s0
+/dev/socket/qmux_radio/rild_oem0       u:object_r:rild_socket_device:s0
+/dev/system_health_monitor             u:object_r:radio_device:s0
 # mux controller
 /dev/rmnet_mux_ctrl                    u:object_r:radio_device:s0
 # qmi protocol driver

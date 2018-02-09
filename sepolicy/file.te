@@ -30,6 +30,9 @@ type location_app_data_file, file_type, data_file_type;
 # Socket node needed by ims_data daemon
 type ims_socket, file_type;
 
+# Socket node needed by rild
+type rild_socket_device, file_type;
+
 type ramdump_data_file, file_type, data_file_type;
 type diag_logs, file_type, data_file_type, mlstrustedobject;
 
