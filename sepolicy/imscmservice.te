@@ -1,0 +1,42 @@
+# imscmservice - imscmservice daemon
+type imscmservice, domain, device_domain_deprecated;;
+type imscmservice_exec, exec_type, vendor_file_type, file_type;
+
+# Start by init
+init_daemon_domain(imscmservice)
+
+allow imscmservice self:capability { net_raw net_admin };
+
+# Allow imscmservice to create and use socket to communicate between imscmservice processes.
+allow imscmservice self:socket create_socket_perms;
+allowxperm imscmservice self:socket ioctl msm_sock_ipc_ioctls;
+
+# Allow imscmservice to tell init to start the imscmservice data service via property=sys.imscmservice.QMI_DAEMON_STATUS
+set_prop(imscmservice, qcom_imscmservice_prop);
+
+# Allow imscmservice to write to imscmservice_socket
+allow imscmservice imscmservice_socket:sock_file write;
+
+# talk to connectivity engine observer interface daemon (cnd)
+unix_socket_connect(imscmservice, cnd, cnd)
+# talk to netd
+unix_socket_connect(imscmservice, netd, netd)
+# talk to qmux
+qmux_socket(imscmservice)
+# communicate with the network driver
+allow imscmservice self:udp_socket { create ioctl };
+allowxperm imscmservice self:udp_socket ioctl SIOCDEVPRIVATE_D;
+
+# Runs /system/bin/sh for executing ndc commands via popen
+allow imscmservice shell_exec:file rx_file_perms;
+
+# Runs /system/bin/ndc
+allow imscmservice system_file:file rx_file_perms;
+allow imscmservice vendor_file_type:file rx_file_perms;
+
+# address qualcomm proprietary binary denials
+allow imscmservice self:netlink_socket create_socket_perms_no_ioctl;
+allow imscmservice self:netlink_route_socket { create_socket_perms_no_ioctl nlmsg_write nlmsg_read };
+#allow imscmservice default_android_service:service_manager add;
+allow imscmservice smem_log_device:chr_file { read write ioctl open };
+allow imscmservice imscm_service:service_manager { add find };

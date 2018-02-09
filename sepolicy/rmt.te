@@ -32,3 +32,5 @@ wakelock_use(rmt)
 allow rmt uio_device:chr_file rw_file_perms;
 
 allow rmt mmc_block_device:blk_file r_file_perms;
+#allow rmt debugfs:file { write open };
+

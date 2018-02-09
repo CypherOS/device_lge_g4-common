@@ -41,3 +41,6 @@ allow camera sensorservice_service:service_manager find;
 allow camera persist_file:dir search;
 allow camera persist_camera_file:dir search;
 allow camera persist_camera_file:file r_file_perms;
+allow camera sensors:unix_stream_socket connectto;
+allow camera sensors_socket:sock_file write;
+allow camera sensors_device:chr_file getattr;

@@ -53,4 +53,9 @@ allow rild socket_device:sock_file write;
 allow rild unlabeled:dir { write read open add_name remove_name };
 allow rild unlabeled:file { setattr read lock getattr write ioctl unlink open };
 #allow rild unlabeled:file { create };
-
+allow rild radio_device:chr_file { ioctl read open };
+allow rild radio_data_file:dir { write add_name remove_name };
+allow rild radio_data_file:file { read write open create setattr getattr link unlink };
+allow rild system_file:dir { add_name remove_name };
+allow rild system_file:file { read open getattr };
+allow rild netmgrd:unix_stream_socket connectto;

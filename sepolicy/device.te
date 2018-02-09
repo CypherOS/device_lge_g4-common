@@ -34,3 +34,34 @@ type ttyHS0_device, dev_type;
 type fingerprint_device, dev_type;
 
 type subsys_modem_device, dev_type;
+
+#Add qdsp_device type
+type qdsp_device, dev_type, mlstrustedobject;
+
+#Added for fm_radio device
+type fm_radio_device, dev_type;
+
+#Define vm_bms devices
+type vm_bms_device, dev_type;
+type battery_data_device, dev_type;
+
+#EFS sync block devices
+type efs_boot_dev, dev_type;
+
+# Define QDSS devices
+type qdss_device, dev_type;
+
+#Define mpdecision device
+type device_latency, dev_type;
+
+type dsp_device, dev_type;
+
+# Define IPA devices
+type ipa_dev, dev_type;
+
+# energy-awareness device
+type pta_device, dev_type;
+
+type rfkill_device, dev_type, mlstrustedobject;
+
+type power_control_device, dev_type;

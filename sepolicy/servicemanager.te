@@ -9,3 +9,5 @@ allow servicemanager init_shell:file { read open };
 allow servicemanager init_shell:process getattr;
 
 #allow servicemanager init:binder transfer;
+allow servicemanager imscmservice:dir search;
+allow servicemanager imscmservice:file { read open };

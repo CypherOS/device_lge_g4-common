@@ -21,3 +21,7 @@ wakelock_use(qmux)
 
 # Access to /sys/devices/virtual/smdpkt/smdcntl*/open_timeout
 allow qmux sysfs_smdcntl_open_timeout:file rw_file_perms;
+
+allow qmux smem_log_device:chr_file { read write ioctl open };
+allow qmux socket_device:dir { write remove_name add_name };
+allow qmux socket_device:sock_file { create setattr unlink link };
