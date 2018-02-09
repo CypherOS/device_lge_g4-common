@@ -37,3 +37,4 @@ allow ims vendor_file_type:file rx_file_perms;
 # address qualcomm proprietary binary denials
 allow ims self:netlink_socket create_socket_perms_no_ioctl;
 allow ims self:netlink_route_socket { create_socket_perms_no_ioctl nlmsg_write nlmsg_read };
+allow ims smem_log_device:chr_file { read write ioctl open };

@@ -11,3 +11,12 @@ allow $1 qmuxd_socket:dir remove_name;
 unix_socket_connect($1, qmuxd, qmux)
 allow qmux $1_qmuxd_socket:sock_file { getattr unlink };
 ')
+
+#####################################
+# diag_use(clientdomain)
+# allow clientdomain to read/write to diag
+define(`diag_use', `
+r_dir_file($1, sysfs_diag)
+allow $1 diag_device:chr_file rw_file_perms;
+')
+
