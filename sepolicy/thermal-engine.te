@@ -28,3 +28,6 @@ allow thermal-engine sysfs_thermal:lnk_file read;
 
 r_dir_file(thermal-engine, sysfs_ssr)
 r_dir_file(thermal-engine, sysfs_leds)
+
+allow tee smem_log_device:chr_file { read write };
+allow thermal-engine sysfs:file write;

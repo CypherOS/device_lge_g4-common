@@ -28,7 +28,7 @@ allow init self:netlink_route_socket { write getattr setopt nlmsg_write read bin
 allow init self:netlink_socket { write read create };
 allow init self:rawip_socket { getopt create setopt };
 allow init self:socket { read write create };
-#allow init self:socket { ioctl };
+allow init self:socket { ioctl };
 allow init self:udp_socket ioctl;
 allow init sensors_device:chr_file ioctl;
 allow init servicemanager:binder { transfer call };
@@ -48,3 +48,8 @@ allow init ttyHSL0_device:chr_file { ioctl };
 #allow init vendor_file:file execute_no_trans;
 allow init video_device:chr_file { ioctl };
 #allow init video_device:chr_file { write };
+allow init { domain -lmkd -crash_dump }:process noatsecure;
+allow init smem_log_device:chr_file write;
+allow init ttyHSL0_device:chr_file write;
+
+allowxperm init self:socket ioctl msm_sock_ipc_ioctls;

@@ -11,6 +11,34 @@ qmux_socket(qti)
 # Allow qti to create and use socket to communicate between qti processes.
 allow qti self:socket create_socket_perms;
 allowxperm qti self:socket ioctl msm_sock_ipc_ioctls;
+allowxperm qti self:netlink_socket ioctl msm_sock_ipc_ioctls;
 
 # Allow qti to read and write rmnet_device
 allow qti rmnet_device:chr_file rw_file_perms;
+
+net_domain(qti)
+
+allow qti {
+    rmnet_device
+    smem_log_device
+    mhi_device
+    smd_device
+    userdebug_or_eng(`kmsg_device')
+}:chr_file rw_file_perms;
+
+allow qti self:capability {
+    net_admin
+    net_raw
+    fsetid
+    sys_module
+    dac_override
+};
+
+allow qti self:{
+    netlink_socket
+    socket
+    udp_socket
+} create_socket_perms;
+
+allow qti { shell_exec system_file }:file rx_file_perms;
+allow qti smem_log_device:chr_file { read write ioctl open };

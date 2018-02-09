@@ -9,3 +9,6 @@ genfscon proc /sys/kernel/sched_small_task       u:object_r:proc_kernel_sched:s0
 genfscon proc /sys/kernel/sched_boost            u:object_r:proc_kernel_sched:s0
 genfscon proc /debug/fwdump                      u:object_r:proc_wifi_dbg:s0
 genfscon proc /debugdriver/driverdump            u:object_r:proc_wifi_dbg:s0
+genfscon proc /asound/card0/state                u:object_r:proc_audiod:s0
+genfscon proc /proc/sys/vm/dirty_ratio           u:object_r:proc_dirty_ratio:s0
+
