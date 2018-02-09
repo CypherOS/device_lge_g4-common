@@ -173,12 +173,8 @@ on boot
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
     mkdir /data/misc/radio/modem_config/mcfg_sw 0770 radio radio
-    mkdir /system/etc/motorola 0770 radio radio
-    mkdir /system/etc/motorola/mdmctbk 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
     chmod 2770 /data/misc/radio/modem_config/mcfg_sw
-    chmod 2770 /system/etc/motorola
-    chmod 2770 /system/etc/motorola/mdmctbk
     mkdir /dev/socket/qmux_audio 0770 media audio
     chmod 2770 /dev/socket/qmux_audio
     mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
@@ -564,8 +560,13 @@ on post-fs-data
 
     # Create rild related dirs
     touch /data/misc/radio/ril_log 0755 radio radio
-    mkdir /system/etc/motorola/mdmctbk 0755 radio radio
-    touch /system/etc/motorola/qcril.db-wal 0755 radio radio
+    touch /system/etc/motorola/qcril.db-wal 2777 radio radio
+    chown 13:13 /system/etc/motorola 
+    chown 13:13 /system/etc/motorola/*       
+    chown 13:13 /system/etc/motorola/*/*
+    chmod 2777 /system/etc/motorola
+    chmod 2777 /system/etc/motorola/*      
+    chmod 2777 /system/etc/motorola/*/*
     chmod 777 /data/user_de/0/com.android.phone/shared_prefs
     chmod 777 /data/user_de/0/com.android.phone/shared_prefs/*
 

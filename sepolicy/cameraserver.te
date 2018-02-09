@@ -3,3 +3,5 @@ allow cameraserver init:unix_dgram_socket sendto;
 allow cameraserver init:unix_stream_socket connectto;
 allow cameraserver property_socket:sock_file write;
 allow cameraserver socket_device:sock_file write;
+allow cameraserver thermal-engine:unix_stream_socket connectto;
+allow cameraserver thermal_socket:sock_file write;

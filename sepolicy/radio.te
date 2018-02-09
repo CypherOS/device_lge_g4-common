@@ -12,4 +12,4 @@ allow radio persist_file:dir search;
 # Connect to ims service.
 allow radio ims:unix_stream_socket connectto;
 
-#allow radio socket_device:sock_file write;
+allow radio rild_socket_device:sock_file write;

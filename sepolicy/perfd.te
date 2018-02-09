@@ -30,3 +30,7 @@ allow perfd sysfs_power_management:file w_file_perms;
 dontaudit perfd self:capability kill;
 
 allow perfd cameraserver:process signull;
+allow perfd system_data_file:dir { write add_name };
+allow perfd system_data_file:file { open };
+#allow perfd system_data_file:file { create append };
+
