@@ -1,2 +1,0 @@
-allow bluetooth proc:file { open };
-#allow bluetooth proc:file { write };
