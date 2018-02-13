@@ -1,1 +1,2 @@
-com.sony.timekeep           u:object_r:timekeep_service:s0
+com.sony.timekeep                              u:object_r:timekeep_service:s0
+com.qti.snapdragon.sdk.display.IColorService   u:object_r:color_service:s0
