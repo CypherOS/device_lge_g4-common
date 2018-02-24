@@ -15,6 +15,7 @@ MM_V4L2_DRIVER_LIST += msm8996
 MM_V4L2_DRIVER_LIST += msm8992
 
 LOCAL_PATH := $(call my-dir)
+include device/lge/g4-common/camera/mm-camera/Android.mk
 
 include $(CLEAR_VARS)
 ifneq (,$(filter $(MM_V4L2_DRIVER_LIST),$(TARGET_BOARD_PLATFORM)))
