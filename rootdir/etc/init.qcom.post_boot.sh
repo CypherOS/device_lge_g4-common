@@ -203,6 +203,7 @@ if [ -c /dev/coresight-stm ]; then
 fi
 
 # sfX && kessaras: workaround for randomly no SIM on boot
+sleep 10
 REQRESTART=$(getprop gsm.sim.operator.iso-country)
 while [ -z "$REQRESTART" ]
 do
