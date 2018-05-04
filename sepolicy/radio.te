@@ -7,3 +7,5 @@ allow radio ims_socket:sock_file write;
 allow radio persist_file:dir search;
 # Connect to ims service.
 allow radio ims:unix_stream_socket connectto;
+
+allow radio per_mgr:unix_dgram_socket sendto;

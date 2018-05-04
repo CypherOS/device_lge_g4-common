@@ -11,3 +11,5 @@ allow sensors toolbox_exec:file { getattr read open execute execute_no_trans };
 
 allow sensors sensors_data_file:dir { getattr read open };
 allow sensors sensors_data_file:file { read write getattr open };
+
+#allow sensors system_file:file entrypoint;

@@ -62,6 +62,8 @@ allow system_server mpctl_data_file:dir search;
 allow system_server mpctl_data_file:sock_file write;
 allow system_server mpctl_socket:dir search;
 allow system_server mpctl_socket:sock_file write;
+allow system_server per_mgr:unix_dgram_socket sendto;
+#allow system_server persistent_block_device:blk_file { read ioctl open };
 
 allow system_server binder_per_mgr_service:service_manager find;
 set_prop(system_server, ctl_default_prop)

@@ -8,3 +8,5 @@ allow untrusted_app sysfs_usb_supply:lnk_file r_file_perms;
 allow untrusted_app sysfs:file r_file_perms;
 
 allow untrusted_app proc:file getattr;
+
+allow untrusted_app per_mgr:unix_dgram_socket sendto;

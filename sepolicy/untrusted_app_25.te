@@ -1,0 +1,4 @@
+#allow untrusted_app_25 hal_memtrack_hwservice:hwservice_manager find;
+allow untrusted_app_25 per_mgr:unix_dgram_socket sendto;
+allow untrusted_app_25 proc:file { getattr };
+allow untrusted_app_25 proc_zoneinfo:file { read getattr open };

@@ -34,6 +34,7 @@ allow init functionfs:dir mounton;
 
 allow init system_block_device:{ blk_file lnk_file } relabelto;
 allow init persistent_block_device:blk_file setattr;
+allow init kmsg_device:chr_file append;
 
 allowxperm init self:socket ioctl msm_sock_ipc_ioctls;
 allowxperm init self:udp_socket ioctl priv_sock_ioctls;
