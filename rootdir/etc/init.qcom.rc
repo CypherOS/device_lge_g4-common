@@ -159,6 +159,10 @@ on boot
     chown bluetooth bluetooth /sys/devices/soc.0/f995e000.uart/clock
     chmod 0660 /sys/devices/soc.0/f995e000.uart/clock
 
+    # mm-qcamerad
+    mkdir /data/misc/gpu
+    chmod 775 /data/misc/gpu
+
     # Feature chip vendor : brcm
     setprop bluetooth.chip.vendor brcm
 
