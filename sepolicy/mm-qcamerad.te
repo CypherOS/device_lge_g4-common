@@ -8,9 +8,8 @@ allow mm-qcamerad camera_data_file:file create_file_perms;
 allow mm-qcamerad persist_file:file r_file_perms;
 allow mm-qcamerad system_data_file:dir w_dir_perms;
 allow mm-qcamerad system_data_file:file open;
-allow mm-qcamerad { untrusted_app untrusted_app_25 }:fd use;
+allow mm-qcamerad { untrusted_app untrusted_app_25 priv_app }:fd use;
 allow mm-qcamerad camera_data_file:sock_file { create unlink };
-set_prop(mm-qcamerad, debug_prop)
 
 allow mm-qcamerad self:tcp_socket create;
 allow mm-qcamerad self:tcp_socket setopt;
@@ -19,3 +18,15 @@ allow mm-qcamerad self:tcp_socket listen;
 allow mm-qcamerad port:tcp_socket name_bind;
 allow mm-qcamerad self:tcp_socket create_stream_socket_perms;
 allow mm-qcamerad node:tcp_socket node_bind;
+
+allow mm-qcamerad camera_socket:sock_file { create unlink };
+allow mm-qcamerad system_server:unix_stream_socket rw_socket_perms;
+
+allow mm-qcamerad sensorservice_service:service_manager find;
+
+allow mm-qcamerad sysfs:file r_file_perms;
+allow mm-qcamerad sysfs_graphics:file r_file_perms;
+
+binder_call(mm-qcamerad, servicemanager)
+binder_use(mm-qcamerad)
+set_prop(mm-qcamerad, diag_prop)
