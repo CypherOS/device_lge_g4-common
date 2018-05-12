@@ -50,6 +50,10 @@ case "$target" in
         chown media:media /dev/soundtrigger_dma_drv
         touch /dev/socket/perfd
         chmod 0777 /dev/socket/perfd
+        touch /sys/power/wake_lock
+        echo pwr_dbg > /sys/power/wake_lock
+        touch /sys/power/wake_unlock
+        echo pwr_dbg > /sys/power/wake_unlock
         # disable thermal bcl hotplug to switch governor
         echo 0 > /sys/module/msm_thermal/core_control/enabled
         for mode in /sys/devices/soc.0/qcom,bcl.*/mode
