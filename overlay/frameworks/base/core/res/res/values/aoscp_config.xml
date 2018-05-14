@@ -17,7 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Is the battery LED intrusive? Used to decide if there should be a battery led switch -->
-    <bool name="config_intrusiveBatteryLed">true</bool>
+<!--    <bool name="config_intrusiveBatteryLed">true</bool>-->
     <!-- Is the notification LED intrusive? Used to decide if there should be a battery led switch -->
     <bool name="config_intrusiveNotificationLed">true</bool>
     <!-- Hardware 'face' keys present on the device, stored as a bit field.
@@ -35,7 +35,7 @@
     <integer name="config_deviceHardwareKeys">64</integer>
 
     <!-- Does the device supports fast charging -->
-    <bool name="config_FastChargingLedSupported">true</bool>
+<!--    <bool name="config_FastChargingLedSupported">true</bool>-->
 
     <!-- Doze Addon: should the TYPE_PROXIMITY sensor be used as a pulse signal. -->
     <bool name="config_dozePulseHandWave">true</bool>
