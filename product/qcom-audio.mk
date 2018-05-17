@@ -38,7 +38,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # voip
 PRODUCT_PROPERTY_OVERRIDES += \
-    use.voice.path.for.pcm.voip=false
+    use.voice.path.for.pcm.voip=true
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml

@@ -1548,21 +1548,21 @@
     <!-- CM: voice-call OUT handset (h815) -->
     <path name="voice-handset">
         <path name="handset" />
-        <ctl name="RX1 Digital Volume" value="103" />
+        <ctl name="RX1 Digital Volume" value="95" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
     </path>
 
     <!-- CM: voice-call OUT handset (h811) -->
     <path name="voice-handset-tmus">
         <path name="handset" />
-        <ctl name="RX1 Digital Volume" value="103" />
+        <ctl name="RX1 Digital Volume" value="95" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
     </path>
 
     <!-- CM: voice-call OUT handset speaker -->
     <path name="voice-speaker">
         <path name="speaker" />
-        <ctl name="Speaker Driver Playback Volume" value="0" /> <!-- less is more -->
+        <ctl name="Speaker Driver Playback Volume" value="1" /> <!-- less is more -->
     </path>
 
     <path name="voice-speaker-mic">
