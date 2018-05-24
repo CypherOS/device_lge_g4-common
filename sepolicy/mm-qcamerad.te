@@ -7,7 +7,7 @@ get_prop(mm-qcamerad, diag_prop);
 allow mm-qcamerad camera_data_file:file create_file_perms;
 allow mm-qcamerad persist_file:file r_file_perms;
 allow mm-qcamerad system_data_file:dir w_dir_perms;
-allow mm-qcamerad system_data_file:file open;
+allow mm-qcamerad system_data_file:file { open read getattr };
 allow mm-qcamerad { untrusted_app untrusted_app_25 priv_app }:fd use;
 allow mm-qcamerad camera_data_file:sock_file { create unlink };
 
