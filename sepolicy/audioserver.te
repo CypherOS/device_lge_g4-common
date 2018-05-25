@@ -5,3 +5,5 @@ allow audioserver rootfs:lnk_file { getattr };
 allow audioserver binder_per_mgr_service:service_manager find;
 
 allow audioserver socket_device:file write;
+
+allow audioserver device:file { read write open };
