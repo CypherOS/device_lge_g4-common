@@ -146,10 +146,19 @@
     <backend_names>
         <!-- Output devices -->
         <!--device name="SND_DEVICE_OUT_BT_SCO" backend="bt-sco-wb"/>-->
+        <device name="SND_DEVICE_OUT_SPEAKER" backend="speaker" />
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="voice-speaker" />
+        <device name="SND_DEVICE_OUT_HANDSET" backend="handset" />
+        <device name="SND_DEVICE_OUT_LINE" backend="headphones" />
+        <device name="SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES" backend="speaker-and-headphones" />
+        <device name="SND_DEVICE_OUT_SPEAKER_AND_LINE" backend="speaker-and-headphones" />
+        <device name="SND_DEVICE_OUT_VOICE_HEADPHONES" backend="headphones" />
+        <device name="SND_DEVICE_OUT_VOICE_LINE" backend="headphones" />
     </backend_names>
 
     <bit_width_configs>
         <device name="SND_DEVICE_OUT_SPEAKER" bit_width="24"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" bit_width="32" />
     </bit_width_configs>
 
     <config_params>
