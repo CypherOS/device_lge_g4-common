@@ -728,6 +728,7 @@ service bdaddr_loader /system/vendor/bin/bdaddr_loader
 service config_bluetooth /system/bin/init.qcom.bt.sh "onboot"
     class core
     user root
+    seclabel u:r:bluetooth:s0
     oneshot
 
 on property:init.svc.surfaceflinger=stopped
