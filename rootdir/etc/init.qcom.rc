@@ -729,7 +729,6 @@ service config_bluetooth /system/bin/init.qcom.bt.sh "onboot"
     class core
     user root
     oneshot
-    seclabel u:r:bluetooth_loader:s0
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
