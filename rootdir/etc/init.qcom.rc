@@ -143,7 +143,6 @@ on boot
     write /sys/module/msm_thermal/core_control/enabled 1
 
     # bluetooth
-    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /proc/bluetooth/sleep/btwake
@@ -468,8 +467,6 @@ on post-fs
 
 # msm specific files that need to be created on /data
 on post-fs-data
-    start hrdump
-
     start qseecomd
     # busy loop to wait for qseecomd started
     exec - root root system -- /system/bin/init.qcom.qseecomd.sh
