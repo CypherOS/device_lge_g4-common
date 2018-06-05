@@ -39,4 +39,7 @@
 
     <!-- Doze Addon: should the TYPE_PROXIMITY sensor be used as a pulse signal. -->
     <bool name="config_dozePulseHandWave">true</bool>
+	
+    <!-- Kernel Proc File Stats Path -->
+    <string translatable="false" name="config_kernelProcFileStats">/sys/devices/system/cpu/cpufreq/stats/cpu%d/time_in_state</string>
 </resources>
