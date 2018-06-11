@@ -47,7 +47,7 @@ unix_socket_connect(netmgrd, cnd, cnd)
 # execute toybox/toolbox
 allow netmgrd toolbox_exec:file rx_file_perms;
 allow netmgrd qmuxd:unix_stream_socket connectto;
-allow netmgrd qmuxd_qmuxd_socket:sock_file write;
+allow netmgrd qmuxd_socket:sock_file write;
 
 #Allow netmgrd to use wakelock
 wakelock_use(netmgrd)

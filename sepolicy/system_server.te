@@ -47,7 +47,7 @@ allow system_server system_data_file:sock_file write;
 allow system_server default_android_service:service_manager find;
 allow system_server persistent_block_device:blk_file { getattr };
 allow system_server qmuxd:unix_stream_socket connectto;
-allow system_server qmuxd_qmuxd_socket:sock_file write;
+allow system_server qmuxd_socket:sock_file write;
 allow system_server sensors:unix_stream_socket connectto;
 allow system_server sensors_socket:sock_file write;
 allow system_server smem_log_device:chr_file { ioctl open read write };

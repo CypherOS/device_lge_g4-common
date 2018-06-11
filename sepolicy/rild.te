@@ -41,7 +41,7 @@ userdebug_or_eng(`
 allow rild self:socket ioctl;
 allow rild default_android_service:service_manager find;
 allow rild qmuxd:unix_stream_socket connectto;
-allow rild qmuxd_qmuxd_socket:sock_file write;
+allow rild qmuxd_socket:sock_file write;
 allow rild smem_log_device:chr_file { ioctl open read write };
 
 # qcril.so needs access to /vendor/radio/qcril_database/qcril.db
