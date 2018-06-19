@@ -50,4 +50,7 @@
 
     <!-- Kernel Proc File Stats Path -->
     <string name="config_kernelProcFileStats" translatable="false">/sys/devices/system/cpu/cpufreq/stats/cpu%d/time_in_state</string>
+
+    <!-- If this is true, Ambient Play will be available on the device. -->
+    <bool name="config_supportsAmbientPlay">true</bool>
 </resources>
