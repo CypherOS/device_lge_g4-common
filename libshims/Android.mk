@@ -42,6 +42,14 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_PROPRIETARY_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
+# LIBCAMERA SHIM
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := camera.cpp
+LOCAL_MULTILIB := 32
+LOCAL_MODULE := libcamera_shim
+LOCAL_MODULE_TAGS := optional
+include $(BUILD_SHARED_LIBRARY)
+
 # cameraclient
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := cameraclient_shim.cpp
