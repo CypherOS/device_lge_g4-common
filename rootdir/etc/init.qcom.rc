@@ -56,7 +56,6 @@ on early-fs
     chmod 666 /dev/block/mmcblk0p35
 
     restorecon_recursive /persist
-    restorecon_recursive /carrier
 
     # load kernel modules
     insmod /system/lib/modules/mcDrvModule.ko
@@ -103,14 +102,15 @@ on init
     mkdir /cust 0771 system system
     mkdir /carrier 0770 system carrier
     chown system carrier /carrier
-    chmod 0770 /carrier
+    chmod 0771 /carrier
     chmod 0644 /proc/cmdline
 
     chmod 0660 /dev/soundtrigger_dma_drv
     chown media media /dev/soundtrigger_dma_drv
 
     # Set permissions for persist partition
-    mkdir /persist 0771 system system
+    chmod 0771 /persist
+    chown system system /persist
 
     # Set permissions for drm partition
     mkdir /persist-lg 0771 system system
@@ -455,9 +455,6 @@ on post-fs
 
     chown root log /proc/slabinfo
     chmod 0440 /proc/slabinfo
-
-    chown system carrier /carrier
-    chmod 0771 /carrier
 
     # restorecon carrier partition
     restorecon_recursive /carrier
