@@ -8,6 +8,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     libbt-vendor \
+    libbt-brcm_a2dp \
     hwaddrs \
     libprotobuf-cpp-full
 
