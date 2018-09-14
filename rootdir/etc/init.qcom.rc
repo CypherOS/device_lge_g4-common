@@ -823,7 +823,7 @@ service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/vendor/bin/qmuxd
     class main
-    user root
+    user radio
     group radio audio bluetooth gps nfc diag
     disabled
 
