@@ -29,7 +29,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.svlte1x=false \
     ro.ril.svdo=false \
     persist.radio.add_power_save=1 \
-    persist.telephony.oosisdc=false
+    persist.telephony.oosisdc=false \
+    ro.telephony.call_ring.multiple=false
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
