@@ -1,11 +1,11 @@
-permissive tee;
-unconfined_domain(tee)
-
-allow tee persist_lg_data_file:dir { write add_name };
-allow tee persist_lg_data_file:file { create_file_perms };
-allow tee drm_block_device:blk_file rw_file_perms;
+allow tee smem_log_device:chr_file { read write ioctl open };
+allow tee unlabeled:dir { read getattr open };
+allow tee unlabeled:file { read getattr open };
 allow tee vfat:file { read getattr open };
 allow tee vfat:dir search;
-allow tee smem_log_device:chr_file { read write };
-allow tee smem_log_device:chr_file { ioctl open };
-allow tee ssd_block_device:blk_file { open read write };
+
+allow tee unlabeled:file write;
+
+allow tee sd_device:file { read getattr open };
+
+allow tee unlabeled:dir search;

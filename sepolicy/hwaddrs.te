@@ -1,17 +1,17 @@
 type hwaddrs, domain;
 type hwaddrs_exec, exec_type, file_type;
-
+net_domain(hwaddrs)
 init_daemon_domain(hwaddrs)
 
-allow hwaddrs self:capability { dac_override };
+allow hwaddrs misc_block_device:blk_file read;
+allow hwaddrs self:capability dac_override;
+allow hwaddrs wifi_data_file:dir { write add_name };
+allow hwaddrs wifi_data_file:file { write open create };
+allow hwaddrs bluetooth_data_file:dir { write add_name };
+allow hwaddrs bluetooth_data_file:file { write open create };
+allow hwaddrs misc_block_device:blk_file open;
 
-allow hwaddrs rootfs:lnk_file { getattr };
-
-allow hwaddrs block_device:dir { search };
-allow hwaddrs misc_block_device:blk_file { read open };
-
-allow hwaddrs wifi_data_file:file create_file_perms;
-allow hwaddrs bluetooth_data_file:file create_file_perms;
-
-allow hwaddrs wifi_data_file:dir { search write add_name };
-allow hwaddrs bluetooth_data_file:dir { search write add_name };
+allow hwaddrs block_device:dir search;
+allow hwaddrs cache_block_device:dir search;
+allow hwaddrs bluetooth_data_file:dir search;
+allow hwaddrs wifi_data_file:dir search;
