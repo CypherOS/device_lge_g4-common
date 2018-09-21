@@ -199,6 +199,7 @@ on boot
     setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
 
     # Remove SUID bit for iproute2 ip tool
+    chown system shell /system/bin/ip
     chmod 0755 /system/bin/ip
 
 #   Define TCP buffer sizes for various networks
