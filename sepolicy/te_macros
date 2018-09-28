@@ -1,8 +1,0 @@
-#####################################
-# unconfined_domain(domain)
-# Allow the specified domain to do anything.
-#
-define(`unconfined_domain', `
-typeattribute $1 mlstrustedsubject;
-typeattribute $1 unconfineddomain;
-')
