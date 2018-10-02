@@ -1008,6 +1008,7 @@ service qseecomd /system/vendor/bin/qseecomd
     class core
     user root
     group root
+    socket seempdw dgram 0666 system system
     shutdown critical
     writepid /dev/cpuset/system-background/tasks
 
@@ -1032,7 +1033,6 @@ service per_mgr /system/vendor/bin/pm-service
     class core
     user system
     group system net_raw
-    socket seempdw dgram 0666 system system
     ioprio rt 4
     writepid /dev/cpuset/system-background/tasks
 
