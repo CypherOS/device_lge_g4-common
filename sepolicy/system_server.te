@@ -8,4 +8,5 @@ allow system_server socket_device:file write;
 allow system_server dalvikcache_data_file:dir r_dir_perms;
 allow system_server sd_device:dir { read open };
 allow system_server console_device:chr_file { read write };
+allow system_server per_mgr:unix_dgram_socket sendto;
 dontaudit system_server dalvikcache_data_file:file { write execute };
