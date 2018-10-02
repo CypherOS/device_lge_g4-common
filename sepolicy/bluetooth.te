@@ -2,3 +2,7 @@ allow bluetooth firmware_file:dir { search open read };
 allow bluetooth firmware_file:file { read open };
 allow bluetooth proc:file { open };
 allow bluetooth sysfs:file write;
+
+allow bluetooth qti_init_shell_exec:file entrypoint;
+#allow bluetooth self:capability dac_override;
+allow bluetooth smem_log_device:chr_file { read write ioctl open };
