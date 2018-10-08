@@ -5,3 +5,5 @@ allow mediaprovider per_mgr:unix_dgram_socket sendto;
 allow mediaprovider storage_stub_file:dir getattr;
 
 allow mediaprovider tee:unix_dgram_socket sendto;
+
+dontaudit mediaprovider tee:unix_dgram_socket sendto;

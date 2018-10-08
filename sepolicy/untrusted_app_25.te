@@ -20,6 +20,8 @@ allow untrusted_app_25 kgsl_debugfs:file { getattr open };
 
 dontaudit untrusted_app_25 proc:file { read open };
 
+allow untrusted_app_25 debugfs_kgsl:dir search;
 allow untrusted_app_25 tee:unix_dgram_socket sendto;
 
 dontaudit untrusted_app_25 tee:unix_dgram_socket sendto;
+
