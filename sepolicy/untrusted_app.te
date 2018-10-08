@@ -57,11 +57,13 @@ allow untrusted_app vendor_rild_libpath_prop:file { getattr open };
 allow untrusted_app vndservice_contexts_file:file read;
 allow untrusted_app wcnss_prop:file { getattr open };
 allow untrusted_app wififtmd_prop:file { getattr open };
+allow untrusted_app storage_stub_file:dir getattr;
 
 dontaudit untrusted_app hal_memtrack_hwservice:hwservice_manager find;
 dontaudit untrusted_app kgsl_debugfs:file { read getattr open };
 dontaudit untrusted_app proc:file { read open };
 
+allow untrusted_app debugfs_kgsl:dir search;
 allow untrusted_app tee:unix_dgram_socket sendto;
 
 dontaudit untrusted_app tee:unix_dgram_socket sendto;

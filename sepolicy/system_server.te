@@ -11,6 +11,8 @@ allow system_server console_device:chr_file { read write };
 allow system_server per_mgr:unix_dgram_socket sendto;
 allow system_server binder_per_mgr_service:service_manager find;
 allow system_server qemu_hw_mainkeys_prop:property_service set;
+allow system_server vold_data:dir rw_dir_perms;
+allow system_server vold_data:file { rw_file_perms create_file_perms };
 
 dontaudit system_server dalvikcache_data_file:file { write execute };
 

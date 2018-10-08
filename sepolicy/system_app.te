@@ -5,6 +5,7 @@ binder_call(system_app, wificond)
 
 allow system_app time_daemon:unix_stream_socket connectto;
 allow system_app per_mgr:unix_dgram_socket sendto;
+allow system_app storage_stub_file:dir getattr;
 
 allow system_app debugfs_kgsl:dir search;
 
