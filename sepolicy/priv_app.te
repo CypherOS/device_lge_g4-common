@@ -33,6 +33,8 @@ allow priv_app per_mgr:unix_dgram_socket sendto;
 # vmstat
 allow priv_app proc_stat:file { getattr read open };
 allow priv_app proc_vmstat:file { getattr open read };
+allow priv_app mnt_media_rw_stub_file:dir getattr;
+allow priv_app wifi_prop:file read;
 
 
 allow priv_app firmware_file:dir { read open };
@@ -45,6 +47,7 @@ allow priv_app ril_database:dir { read getattr open };
 allow priv_app ril_database:file getattr;
 allow priv_app rootfs:blk_file getattr;
 
+allow priv_app proc_modules:file read;
 
 allow priv_app debugfs_kgsl:dir search;
 allow priv_app tee:unix_dgram_socket sendto;

@@ -67,3 +67,4 @@ allow untrusted_app debugfs_kgsl:dir search;
 allow untrusted_app tee:unix_dgram_socket sendto;
 
 dontaudit untrusted_app tee:unix_dgram_socket sendto;
+dontaudit untrusted_app debugfs_kgsl:dir search;
