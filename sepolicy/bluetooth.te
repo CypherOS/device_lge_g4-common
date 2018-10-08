@@ -7,5 +7,7 @@ allow bluetooth qti_init_shell_exec:file entrypoint;
 allow bluetooth smem_log_device:chr_file { read write ioctl open };
 
 allow bluetooth btnvtool_exec:file execute_no_trans;
+allow bluetooth tee:unix_dgram_socket sendto;
 
 dontaudit bluetooth self:capability dac_override;
+dontaudit bluetooth tee:unix_dgram_socket sendto;

@@ -1,8 +1,9 @@
 allow mediaprovider cache_private_backup_file:dir getattr;
-allow mediaprovider cache_recovery_file:dir getattr;
+allow mediaprovider cache_recovery_file:dir { getattr open };
 
 allow mediaprovider per_mgr:unix_dgram_socket sendto;
 allow mediaprovider storage_stub_file:dir getattr;
+allow mediaprovider cache_recovery_file:dir read;
 
 allow mediaprovider tee:unix_dgram_socket sendto;
 
