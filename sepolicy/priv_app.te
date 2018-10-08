@@ -44,3 +44,9 @@ allow priv_app rfs_system_file:lnk_file getattr;
 allow priv_app ril_database:dir { read getattr open };
 allow priv_app ril_database:file getattr;
 allow priv_app rootfs:blk_file getattr;
+
+
+allow priv_app debugfs_kgsl:dir search;
+allow priv_app tee:unix_dgram_socket sendto;
+
+dontaudit priv_app tee:unix_dgram_socket sendto;

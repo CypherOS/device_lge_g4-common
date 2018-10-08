@@ -19,3 +19,7 @@ allow untrusted_app_25 proc_zoneinfo:file { read getattr open };
 allow untrusted_app_25 kgsl_debugfs:file { getattr open };
 
 dontaudit untrusted_app_25 proc:file { read open };
+
+allow untrusted_app_25 tee:unix_dgram_socket sendto;
+
+dontaudit untrusted_app_25 tee:unix_dgram_socket sendto;

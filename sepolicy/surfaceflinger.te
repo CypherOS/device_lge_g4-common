@@ -1,1 +1,3 @@
 allow surfaceflinger socket_device:file write;
+
+allow surfaceflinger debugfs_kgsl:dir search;
