@@ -2,7 +2,6 @@ bin/ATFWD-daemon
 bin/qmi-framework-tests/check_system_health
 bin/qmi-framework-tests/qmi_test_mt_client_init_instance
 bin/hci_qcomm_init
-bin/hwaddrs
 bin/loc_launcher
 bin/lowi-server
 bin/qseecom_sample_client
@@ -68,6 +67,7 @@ vendor/bin/adsprpcd
 vendor/bin/bdaddr_loader
 vendor/bin/btnvtool
 vendor/bin/energy-awareness
+vendor/bin/hwaddrs
 vendor/bin/ims_rtp_daemon
 vendor/bin/imscmservice
 vendor/bin/imsdatadaemon
