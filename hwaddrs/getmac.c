@@ -30,7 +30,7 @@ int main() {
     char macbuf[3];
     int i;
 
-    fd1 = open("/dev/block/bootdevice/by-name/misc", O_RDONLY);
+    fd1 = open("/dev/block/platform/soc.0/f9824900.sdhci/by-name/misc", O_RDONLY);
     fd2 = open("/data/misc/wifi/config", O_WRONLY|O_CREAT|O_TRUNC, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
 
     if (!blank(fd1, 0x3000))
