@@ -1020,6 +1020,7 @@ service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
+    socket sensor_ctl_socket dgram 0666 camera camera
     writepid /dev/cpuset/system-background/tasks
 
 service qseecomd /system/vendor/bin/qseecomd
