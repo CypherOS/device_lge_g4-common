@@ -174,6 +174,8 @@ on boot
     # mm-qcamerad
     mkdir /data/misc/gpu
     chmod 775 /data/misc/gpu
+    # set perms for mm-qcamera-daemon
+    chmod 775 /system/vendor/bin/mm-qcamera-daemon
 
     # Feature chip vendor : brcm
     setprop bluetooth.chip.vendor brcm
