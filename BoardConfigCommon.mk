@@ -30,7 +30,7 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Shim libs
 TARGET_LD_SHIM_LIBS := \
-    /system/vendor/lib64/libril-qc-qmi-1.so|/system/lib64/rild_socket.so \
+    /system/vendor/lib64/libril-qc-qmi-1.so|/system/vendor/lib64/rild_socket.so \
     /system/lib64/libmdmcutback.so|/system/vendor/lib64/libqsap_shim.so \
     /system/vendor/lib64/libcneapiclient.so|system/vendor/lib64/libcne_shim.so \
     /system/vendor/lib/hw/camera.msm8992.so|/system/lib/libcamera_shim.so \
