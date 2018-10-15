@@ -5,6 +5,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-external-service \
     camera.default \
     libqomx_core \
+    mm-qcamera-app \
     libmm-qcamera
 
 PRODUCT_COPY_FILES += \
