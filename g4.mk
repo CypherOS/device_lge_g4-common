@@ -70,6 +70,9 @@ PRODUCT_PACKAGES += \
     libqomx_core \
     libmm-qcamera
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
+
 # rootless torch tile workaround
 PRODUCT_PACKAGES += \
     Flashlight
