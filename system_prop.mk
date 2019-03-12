@@ -162,3 +162,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.renderer=opengl
 
+# Storaged
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.storaged.event.interval=999999
