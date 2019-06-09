@@ -4,6 +4,7 @@ allow rfs_access sysfs_uio:lnk_file read;
 allow rfs_access sysfs_uio_file:dir search;
 allow rfs_access sysfs_uio_file:file { read getattr open };
 allow rfs_access self:capability net_raw;
+allow rfs_access self:capability { net_raw dac_override };
 allow rfs_access self:socket create_socket_perms;
 allowxperm rfs_access self:socket ioctl msm_sock_ipc_ioctls;
 

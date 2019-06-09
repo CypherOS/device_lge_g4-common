@@ -1,7 +1,10 @@
-#neverallow: allow rmt_storage block_device:blk_file { open read write };
+allow rmt_storage modemst1_block_device:blk_file { open read write };
+allow rmt_storage modemst2_block_device:blk_file { open read write };
+allow rmt_storage fsc_block_device:blk_file { open read write };
+allow rmt_storage fsg_block_device:blk_file { open read write };
 
 allow rmt_storage self:capability sys_admin;
-allow rmt_storage self:capability { net_raw };
+allow rmt_storage self:capability { net_raw dac_override };
 
 # debugfs access
 userdebug_or_eng(`

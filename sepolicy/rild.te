@@ -1,5 +1,4 @@
-#neverallow: allow rild system_data_file:file { write };
-#neverallow: allow rild default_android_service:service_manager find;
+allow rild system_data_file:file { write create };
 
 allow rild self:socket ioctl;
 allow rild servicemanager:binder call;

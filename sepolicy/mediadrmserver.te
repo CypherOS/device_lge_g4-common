@@ -1,3 +1,6 @@
 allow mediadrmserver firmware_file:lnk_file read;
 allow mediadrmserver unlabeled:dir search;
 allow mediadrmserver unlabeled:file { read getattr open };
+
+allow mediadrmserver media_data_file:dir { add_name create search write getattr open read };
+allow mediadrmserver media_data_file:file { create getattr open write read };
