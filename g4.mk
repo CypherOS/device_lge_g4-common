@@ -185,10 +185,6 @@ PRODUCT_PACKAGES += \
 	VisualizationWallpapers \
 	librs_jni
 
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@1.0-service-legacymm
-
 # MP-CTL
 PRODUCT_PACKAGES += \
     libqti-perfd \
