@@ -36,4 +36,14 @@
 ###################################
 # Data System files
 #
+/data/system_de/[0-9]/spblob                             u:object_r:vold_data:s0
 /data/system_de/[0-9]/spblob(/.*)?                       u:object_r:vold_data:s0
+/sdcard/Android/data                                     u:object_r:data_file:s0
+
+###################################
+# Other partition files
+#
+/sns/cal(/.*)?                                           u:object_r:sensors_data:s0
+
+# torch/flashlight
+/sys/devices/soc.0/qpnp-flash-led-26/leds/led:torch_1/brightness	u:object_r:flashlight_app_data_file:s0

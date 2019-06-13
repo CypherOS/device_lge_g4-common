@@ -57,6 +57,7 @@
     <ctl name="HDMI_RX Port Mixer MI2S_TX" value="0" />
     <ctl name="SLIMBUS_0_RX Port Mixer SLIM_0_TX" value="0" />
     <ctl name="SEC_AUX_PCM_RX Audio Mixer MultiMedia1" value="0" />
+    <ctl name="SEC_AUX_PCM_RX Audio Mixer MultiMedia3" value="0" />
     <ctl name="SEC_AUX_PCM_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="SEC_AUX_PCM_RX Audio Mixer MultiMedia5" value="0" />
     <ctl name="SEC_AUX_PCM_RX Audio Mixer MultiMedia6" value="0" />
@@ -391,6 +392,11 @@
         <path name="deep-buffer-playback" />
     </path>
 
+    <path name="deep-buffer-playback speaker-and-headphones">
+	<ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia1" value="1" />
+	<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia1" value="1" />
+    </path>
+
     <path name="echo-reference">
         <ctl name="AUDIO_REF_EC_UL1 MUX" value="SLIM_RX" />
         <ctl name="AUDIO_REF_EC_UL2 MUX" value="SLIM_RX" />
@@ -474,7 +480,7 @@
 
     <!-- CM: voice-call OUT handset speaker -->
     <path name="low-latency-playback voice-speaker">
-        <!-- empty -->
+        <path name="low-latency-playback" />
     </path>
 
     <path name="low-latency-playback handset">
@@ -900,6 +906,7 @@
     </path>
 
     <path name="low-latency-record bt-sco">
+      <ctl name="MultiMedia5 Mixer SLIM_0_TX" value="1" />
     </path>
 
     <path name="low-latency-record bt-sco-wb">
@@ -1403,6 +1410,19 @@
         <ctl name="Speaker Driver Playback Volume" value="9" />
     </path>
 
+    <!-- raw pb -->
+    <path name="audio-ull-playback">
+        <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia3" value="1" />
+    </path>
+
+    <path name="audio-ull-playback speaker">
+        <path name="speaker" />
+    </path>
+
+    <path name="audio-ull-playback bt-sco">
+        <ctl name="SEC_AUX_PCM_RX Audio Mixer MultiMedia3" value="1" />
+    </path>
+
    <path name="sidetone-iir">
         <!--
         <ctl name="IIR1 Enable Band1" value="1" />
@@ -1597,21 +1617,21 @@
     <!-- CM: voice-call OUT handset (h815) -->
     <path name="voice-handset">
         <path name="handset" />
-        <ctl name="RX1 Digital Volume" value="95" />
+        <ctl name="RX1 Digital Volume" value="84" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
     </path>
 
     <!-- CM: voice-call OUT handset (h811) -->
     <path name="voice-handset-tmus">
         <path name="handset" />
-        <ctl name="RX1 Digital Volume" value="95" />
+        <ctl name="RX1 Digital Volume" value="84" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
     </path>
 
     <!-- CM: voice-call OUT handset speaker -->
     <path name="voice-speaker">
         <path name="speaker" />
-        <ctl name="Speaker Driver Playback Volume" value="1" /> <!-- less is more -->
+        <ctl name="Speaker Driver Playback Volume" value="9" />
     </path>
 
     <path name="voice-speaker-mic">
@@ -2149,33 +2169,33 @@
     <!-- QUAT MI2S SPEAKER ends -->
 
     <path name="bt-sco-and-speaker">
-        <ctl name="SLIM_0_RX SampleRate" value="KHZ_48" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_8" />
         <path name="speaker" />
     </path>
 
     <path name="bt-sco-wb-and-speaker">
-        <ctl name="SLIM_0_RX SampleRate" value="KHZ_96" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_16" />
         <path name="speaker" />
     </path>
 
     <path name="bt-sco-and-headphones">
-        <ctl name="SLIM_0_RX SampleRate" value="KHZ_48" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_8" />
         <path name="headphones" />
     </path>
 
     <path name="bt-sco-wb-and-headphones">
-        <ctl name="SLIM_0_RX SampleRate" value="KHZ_96" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_16" />
         <path name="headphones" />
     </path>
 
     <path name="bt-sco-and-headphones-and-speaker">
-        <ctl name="SLIM_0_RX SampleRate" value="KHZ_48" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_8" />
         <path name="headphones" />
         <path name="speaker" />
     </path>
 
     <path name="bt-sco-wb-and-headphones-and-speaker">
-        <ctl name="SLIM_0_RX SampleRate" value="KHZ_96" />
+        <ctl name="SLIM_0_RX SampleRate" value="KHZ_16" />
         <path name="speaker-and-headphones" />
     </path>
 

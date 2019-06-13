@@ -32,6 +32,7 @@ import init.device.rc
 on early-init
     # Symlink diag to diag_lge to unbreak LG proprietary tools
     symlink /dev/diag /dev/diag_lge
+    symlink /system/vendor /odm
 
     mount debugfs debugfs /sys/kernel/debug
     symlink /data/tombstones /tombstones
@@ -55,6 +56,7 @@ on early-fs
     chmod 666 /dev/block/mmcblk0p35
 
     restorecon_recursive /persist
+    restorecon_recursive /carrier
 
     # load kernel modules
     insmod /system/lib/modules/mcDrvModule.ko
@@ -72,13 +74,6 @@ on fs
     wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
     mount_all fstab.qcom
-
-on late-fs
-    # Start services for bootanim
-    start vendor.configstore-hal
-    start surfaceflinger
-    start bootanim
-    start vendor.gralloc-2-0
 
 on init
     # ZRAM setup
@@ -105,15 +100,14 @@ on init
     mkdir /cust 0771 system system
     mkdir /carrier 0770 system carrier
     chown system carrier /carrier
-    chmod 0771 /carrier
+    chmod 0770 /carrier
     chmod 0644 /proc/cmdline
 
     chmod 0660 /dev/soundtrigger_dma_drv
     chown media media /dev/soundtrigger_dma_drv
 
     # Set permissions for persist partition
-    chmod 0771 /persist
-    chown system system /persist
+    mkdir /persist 0771 system system
 
     # Set permissions for drm partition
     mkdir /persist-lg 0771 system system
@@ -146,6 +140,7 @@ on boot
     write /sys/module/msm_thermal/core_control/enabled 1
 
     # bluetooth
+    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /proc/bluetooth/sleep/btwake
@@ -170,12 +165,6 @@ on boot
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/soc.0/f995e000.uart/clock
     chmod 0660 /sys/devices/soc.0/f995e000.uart/clock
-
-    # mm-qcamerad
-    mkdir /data/misc/gpu
-    chmod 775 /data/misc/gpu
-    # set perms for mm-qcamera-daemon
-    chmod 775 /system/vendor/bin/mm-qcamera-daemon
 
     # Feature chip vendor : brcm
     setprop bluetooth.chip.vendor brcm
@@ -207,8 +196,9 @@ on boot
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
 
+    setprop ro.telephony.call_ring.multiple false
+
     # Remove SUID bit for iproute2 ip tool
-    chown system shell /system/bin/ip
     chmod 0755 /system/bin/ip
 
 #   Define TCP buffer sizes for various networks
@@ -460,14 +450,22 @@ on post-fs
     chown root log /proc/slabinfo
     chmod 0440 /proc/slabinfo
 
+    chown system carrier /carrier
+    chmod 0771 /carrier
+
     # restorecon carrier partition
     restorecon_recursive /carrier
 
     # We restorecon /preload in case preload folder has been reset.
     restorecon_recursive /preload
 
+    # required for Google wizard / first logon
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+
 # msm specific files that need to be created on /data
 on post-fs-data
+    start hrdump
+
     start qseecomd
     # busy loop to wait for qseecomd started
     exec - root root system -- /system/vendor/bin/init.qcom.qseecomd.sh
@@ -491,14 +489,13 @@ on post-fs-data
     # Create folder for camera sockets
     mkdir /data/misc/camera 0771 camera camera
 
+    mkdir /data/misc/ipa 0700 net_admin net_admin
 
     mkdir /data/misc/bluetooth 0771 bluetooth bluetooth
 
     # Create the directories used by the Wireless subsystem
     mkdir /data/vendor/wifi 0770 wifi wifi
     mkdir /data/vendor/wifi/sockets 0770 wifi wifi
-    mkdir /data/vendor/wifi/hostapd 0770 wifi wifi
-    mkdir /data/vendor/wifi/hostapd/ctrl 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa_supplicant 0770 wifi wifi
@@ -508,14 +505,6 @@ on post-fs-data
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
-
-    # Create netmgr log dir
-    mkdir /data/vendor/netmgr 0770 radio radio
-    chmod 0770 /data/vendor/netmgr
-
-    # Create ipacm log dir
-    mkdir /data/vendor/ipa 0770 radio radio
-    chmod 0770 /data/vendor/ipa
 
     # Create the directories used by CnE subsystem
     mkdir /data/connectivity 0771 system system
@@ -571,10 +560,7 @@ on post-fs-data
     chown system system /data/shared
 
     # Make sure the default firmware is loaded
-    write /sys/module/bcmdhd/parameters/firmware_path "/system/etc/firmware/fw_bcmdhd.bin"
-
-    # Create directory for hostapd
-    mkdir /data/hostapd 0770 system wifi
+    write /sys/module/bcmdhd/parameters/firmware_path "/vendor/etc/firmware/fw_bcmdhd.bin"
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
@@ -723,6 +709,7 @@ service ppd /system/vendor/bin/mm-pp-daemon
     class late_start
     disabled
     user system
+    seclabel u:r:mm-pp-daemon:s0
     socket pps stream 0660 system system
     group system graphics
 
@@ -735,7 +722,6 @@ service bdaddr_loader /system/vendor/bin/bdaddr_loader
 service config_bluetooth /system/vendor/bin/init.qcom.bt.sh "onboot"
     class core
     user root
-    seclabel u:r:bluetooth:s0
     oneshot
 
 on property:init.svc.surfaceflinger=stopped
@@ -838,7 +824,7 @@ service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/vendor/bin/qmuxd
     class main
-    user radio
+    user root
     group radio audio bluetooth gps nfc diag
     disabled
 
@@ -850,10 +836,10 @@ service netmgrd /system/vendor/bin/netmgrd
 
 service ipacm-diag /system/vendor/bin/ipacm-diag
     class main
-    user radio
+    user system
     socket ipacm_log_file dgram 660 system net_admin
-    group radio inet oem_2950
-    writepid /dev/cpuset/system-background/tasks
+    group net_admin oem_2950
+    disabled
 
 service qti /system/vendor/bin/qti
     class main
@@ -933,9 +919,8 @@ service qcom-post-boot /system/vendor/bin/init.qcom.post_boot.sh
     disabled
     oneshot
 
-#Group permissions for rild
-service ril-daemon /vendor/bin/hw/rild
-    class late_start
+# real rild started by wrild.sh
+service real-ril-daemon /vendor/bin/hw/rild
     socket qmux_radio/rild_oem0 stream 0777 radio system
     socket qmux_radio/qmux_client_socket stream 0777 radio system
     user root
@@ -943,15 +928,16 @@ service ril-daemon /vendor/bin/hw/rild
     group radio cache inet misc audio log readproc wakelock oem_2901 oem_2950 net_raw wifi diag
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-on property:init.svc.ril-daemon=stopped
-    start ril-daemon
-
-service hostapd /system/vendor/bin/hostapd -dd /data/misc/wifi/hostapd.conf
-    class late_start
+# the rild wrapper which ensures proper rild handling
+service ril-daemon /system/bin/wrild.sh
     user root
-    group root
-    oneshot
+    seclabel u:r:wrild:s0
     disabled
+
+on property:init.svc.ril-daemon=stopped
+    start qmuxd
+    start netmgrd
+    start ril-daemon
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
@@ -1007,7 +993,7 @@ service qcom-usb-sh /system/vendor/bin/init.qcom.usb.sh
     oneshot
 
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
-    -O/data/vendor/wifi/wpa/sockets -dd \
+    -O/data/vendor/wifi/sockets -puse_p2p_group_interface=1 \
     -g@android:wpa_wlan0
     interface android.hardware.wifi.supplicant@1.0::ISupplicant default
     interface android.hardware.wifi.supplicant@1.1::ISupplicant default
@@ -1022,14 +1008,12 @@ service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
-    socket sensor_ctl_socket dgram 0666 camera camera
     writepid /dev/cpuset/system-background/tasks
 
 service qseecomd /system/vendor/bin/qseecomd
     class core
     user root
     group root
-    socket seempdw dgram 0666 system system
     shutdown critical
     writepid /dev/cpuset/system-background/tasks
 
@@ -1054,6 +1038,7 @@ service per_mgr /system/vendor/bin/pm-service
     class core
     user system
     group system net_raw
+    socket seempdw dgram 0666 system system
     ioprio rt 4
     writepid /dev/cpuset/system-background/tasks
 
@@ -1156,7 +1141,7 @@ service zchgd_offmode /system/bin/zchgd -pseudooffmode -autostop -poffmodewarn
     group root graphics
     disabled
 
-service hwaddrs /system/vendor/bin/hwaddrs
+service hwaddrs /system/bin/hwaddrs
     class core
     user root
     group system wifi
