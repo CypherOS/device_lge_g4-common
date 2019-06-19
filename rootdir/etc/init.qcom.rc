@@ -1077,6 +1077,8 @@ on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
     swapon_all fstab.qcom
     write /dev/kmsg "Boot completed"
+    # Manually start logd service after boot when we want to get a logcat
+    stop logd
 
 service time_daemon /system/vendor/bin/time_daemon
     class late_start
