@@ -1,4 +1,5 @@
 allow surfaceflinger socket_device:file write;
 
 allow surfaceflinger default_android_service:service_manager { find add };
+allow surfaceflinger mnt_vendor_file:dir search;
 allow surfaceflinger persist_display_file:dir search;

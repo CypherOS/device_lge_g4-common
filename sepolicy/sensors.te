@@ -1,3 +1,4 @@
+allow sensors ctl_start_prop:property_service set;
 allow sensors sensors_data_file:dir { read getattr open };
 allow sensors sensors_data_file:file { read write getattr open };
 allow sensors sensors_prop:property_service set;

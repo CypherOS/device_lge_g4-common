@@ -2,6 +2,8 @@ type wrild, domain;
 type wrild_exec, exec_type, file_type;
 init_daemon_domain(wrild)
 
+allow wrild ctl_start_prop:property_service set;
+allow wrild ctl_stop_prop:property_service set;
 allow wrild hal_configstore_default:file read;
 allow wrild hal_graphics_allocator_default:file read;
 allow wrild hal_health_default:file read;
@@ -24,6 +26,7 @@ allow wrild servicemanager:dir { getattr search };
 allow wrild servicemanager:file { open read };
 allow wrild shell_exec:file { getattr read };
 allow wrild system_file:file { entrypoint execute_no_trans };
+allow wrild tee:dir getattr;
 allow wrild tee:file read;
 allow wrild toolbox_exec:file { execute execute_no_trans getattr open read };
 allow wrild ueventd:dir { getattr search };
@@ -33,5 +36,5 @@ allow wrild vendor_init:file { read open };
 allow wrild vndservicemanager:dir { getattr search };
 allow wrild vndservicemanager:file { open read };
 allow wrild vold:dir { getattr search };
-allow wrild vold:file read;
+allow wrild vold:file { read open };
 allow wrild zygote:file read;

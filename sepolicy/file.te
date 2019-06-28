@@ -1,4 +1,6 @@
 # Devices
+# Cust block device
+type cust_block_device, dev_type;
 # Disk block device
 type disk_block_device, dev_type;
 # SSD block device
