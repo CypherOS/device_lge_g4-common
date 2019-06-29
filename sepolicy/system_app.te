@@ -14,3 +14,5 @@ allow system_app netd:binder call;
 
 allow system_app perfprofd:binder call;
 allow system_app qti_init_prop:file { getattr open read };
+
+allow system_app dalvikcache_data_file:file write;

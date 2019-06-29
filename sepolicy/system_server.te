@@ -1,3 +1,4 @@
+allow system_server crash_dump:process getpgid;
 allow system_server frp_block_device:blk_file { read write open setattr getattr ioctl };
 allow system_server default_android_service:service_manager find;
 allow system_server sensors:unix_stream_socket connectto;
@@ -17,7 +18,7 @@ allow system_server dalvikcache_data_file:file { write execute };
 allow system_server binder_per_mgr_service:service_manager find;
 
 allow system_server qmuxd:unix_stream_socket connectto;
-allow system_server qmuxd_socket:dir { add_name write search };
-allow system_server qmuxd_socket:sock_file { create setattr write };
+allow system_server qmuxd_socket:dir { add_name write search remove_name };
+allow system_server qmuxd_socket:sock_file { create setattr write unlink };
 
 allow system_server vfat:dir { open read };

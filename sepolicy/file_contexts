@@ -57,5 +57,6 @@
 /sns/cal(/.*)?                                           u:object_r:sensors_data:s0
 
 # torch/flashlight
-/sys/devices/soc.0/qpnp-flash-led-26/leds/led:torch_1/brightness	u:object_r:flashlight_app_data_file:s0
+/sys/devices/soc.0/qpnp-flash-led-26/leds/led:torch_[0-1]/brightness	u:object_r:flashlight_app_data_file:s0
 /sys/devices/soc.0/leds-qpnp-25/leds(/.*)/brightness                    u:object_r:flashlight_app_data_file:s0
+/sys/class/leds(/.*)/brightness                                         u:object_r:flashlight_app_data_file:s0
