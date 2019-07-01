@@ -15,6 +15,7 @@
 #
 
 $(call inherit-product-if-exists, vendor/lge/g4-common/g4-common-vendor.mk)
+$(call project-set-path,qcom-ril,hardware/qcom/ril/$(TARGET_BOARD_PLATFORM))
 
 # Audio
 PRODUCT_PACKAGES += \
