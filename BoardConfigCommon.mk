@@ -196,7 +196,7 @@ BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
 
 # RIL
-TARGET_RIL_VARIANT := caf
+TARGET_REQUIRES_CAF_RIL := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /vendor/bin/hw/rild=27
 
@@ -239,3 +239,6 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
 -include vendor/lge/g4-common/BoardConfigVendor.mk
+
+# Build ril-caf
+-include $(COMMON_PATH)/ril/Android.mk
