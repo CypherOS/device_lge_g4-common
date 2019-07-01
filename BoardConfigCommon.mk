@@ -196,9 +196,9 @@ BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
 
 # RIL
-TARGET_RIL_VARIANT := caf
+TARGET_REQUIRES_CAF_RIL := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
-    /vendor/bin/hw/rild=27
+    /vendor/bin/hw/rild=25
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi 560dpi xxxhdpi
