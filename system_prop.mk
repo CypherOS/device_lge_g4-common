@@ -87,8 +87,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.mdpcomp.4k2kSplit=1 \
     persist.mdpcomp_perfhint=50 \
     persist.metadata_dynfps.disable=true \
-    persist.sys.wfd.virtual=0 \
-    ro.opengles.version=196610
+    persist.sys.wfd.virtual=0
 
 # FRP
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -157,10 +156,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Storage
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.sdcardfs=true
-
-# Fix graphical glitches on skiagl
-PRODUCT_PROPERTY_OVERRIDES += \
-    debug.hwui.renderer=opengl
 
 # Storaged
 PRODUCT_PROPERTY_OVERRIDES += \
