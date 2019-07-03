@@ -14,6 +14,7 @@
 # limitations under the License.
 #
 
+# Proprietary stuff
 $(call inherit-product-if-exists, vendor/lge/g4-common/g4-common-vendor.mk)
 
 # Audio
