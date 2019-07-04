@@ -48,7 +48,7 @@ allow init sysfs_boot_adsp:file open;
 allow init sysfs_msm_power:file { open write };
 allow init sysfs_thermal:file write;
 
-allow init flashlight_app_data_file:file { open setattr };
+allow init flashlight_app_data_file:file { open setattr write };
 allow init sysfs:file { open write };
 
 allow init bluetooth:process transition;
