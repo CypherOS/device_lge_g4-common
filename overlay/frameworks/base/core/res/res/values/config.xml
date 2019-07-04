@@ -302,4 +302,21 @@
     <!-- Flag indicating which package name can access the persistent data partition -->
     <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
 
+    <!-- Whether the display cutout region of the main built-in display should be forced to
+         black in software (to avoid aliasing or emulate a cutout that is not physically existent).
+     -->
+    <bool name="config_fillMainBuiltInDisplayCutout">true</bool>
+
+    <!-- If set, this will force all windows to draw the status bar background, including the apps
+         that have not requested doing so (via the WindowManager.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
+         flag). -->
+    <bool name="config_forceWindowDrawsStatusBarBackground">true</bool>
+
+    <!-- Controls the opacity of the navigation bar depending on the visibility of the
+         various workspace stacks.
+         0 - Nav bar is always translucent when the freeform stack is visible, otherwise always
+         opaque.
+         1 - Nav bar is always opaque when either the freeform stack or docked stack is visible.
+         -->
+    <integer name="config_navBarOpacityMode">1</integer>
 </resources>
