@@ -26,4 +26,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Full screen aspect ratio -->
     <item name="config_screenAspectRatio" format="float" type="dimen">1.778</item>
+
+    <!-- Does the battery LED support multiple colors?
+         Used to decide if the user can change the colors -->
+    <bool name="config_multiColorBatteryLed">true</bool>
 </resources>
