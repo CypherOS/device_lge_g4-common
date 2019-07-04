@@ -16,6 +16,9 @@
 */
 -->
 <resources>
+    <!-- thickness (height) of the navigation bar on phones that require it -->
+    <dimen name="navigation_bar_size">70dp</dimen>
+
     <dimen name="self_expand_velocity">4000dp</dimen>
     <dimen name="self_collapse_velocity">4000dp</dimen>
     <dimen name="fling_gesture_max_x_velocity">1500dp</dimen>
