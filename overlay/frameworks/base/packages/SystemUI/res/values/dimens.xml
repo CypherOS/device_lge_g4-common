@@ -20,4 +20,8 @@
     <dimen name="self_collapse_velocity">4000dp</dimen>
     <dimen name="fling_gesture_max_x_velocity">1500dp</dimen>
     <dimen name="fling_gesture_max_output_velocity">6000dp</dimen>
+
+    <!-- How much we expand the touchable region of the status bar below the notch to catch touches
+         that just start below the notch. -->
+    <dimen name="display_cutout_touchable_region_size">0dp</dimen>
 </resources>
