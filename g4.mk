@@ -344,6 +344,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-impl \
     android.hardware.thermal@1.0-service \
+    android.hardware.thermal@1.1-service \
     thermal.msm8992
 
 PRODUCT_COPY_FILES += \
