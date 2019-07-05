@@ -157,6 +157,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.sdcardfs=true
 
+# Fix graphical glitches on skiagl
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.renderer=opengl
+
 # Storaged
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.storaged.event.interval=999999
