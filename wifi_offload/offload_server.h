@@ -38,9 +38,21 @@ class OffloadServer {
     OffloadStatus subscribeScanResults(uint32_t delayMs);
     bool unsubscribeScanResults();
     bool setEventCallback(const sp<IOffloadCallback>& cb);
+    void clearEventCallback();
 
   private:
+    void invokeErrorCallbackAndResetIfNeeded(
+        const android::hardware::wifi::offload::V1_0::OffloadStatus& status);
+    void handleScanResult(const std::vector<uint8_t>& message);
+    void handleScanStats(const std::vector<uint8_t>& message);
+    void resetNanoApp();
+
     ScanStats mScanStats;
+    std::mutex mScanStatsLock;
+    std::condition_variable mScanStatsCond;
+    std::mutex mOffloadLock;
+    OffloadStatus mScanStatsStatus;
+
     std::unique_ptr<ChreInterfaceCallbacksImpl> mChreInterfaceCallbacks;
     std::unique_ptr<ChreInterface> mChreInterface;
     sp<IOffloadCallback> mEventCallback;
