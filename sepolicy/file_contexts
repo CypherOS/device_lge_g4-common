@@ -60,3 +60,6 @@
 /sys/devices/soc.0/qpnp-flash-led-26/leds/led:torch_[0-1]/brightness	u:object_r:flashlight_app_data_file:s0
 /sys/devices/soc.0/leds-qpnp-25/leds(/.*)/brightness                    u:object_r:flashlight_app_data_file:s0
 /sys/class/leds(/.*)/brightness                                         u:object_r:flashlight_app_data_file:s0
+
+# Service HALs
+/(vendor|system/vendor)/bin/hw/android\.hardware\.authsecret@1\.0-service u:object_r:hal_authsecret_default_exec:s0
