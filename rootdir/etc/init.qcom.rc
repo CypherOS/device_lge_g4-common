@@ -181,7 +181,7 @@ on boot
     chmod 0600 /dev/rfkill
 
     #Create QMUX deamon socket area
-    mkdir /dev/socket/qmux_radio 0770 radio radio
+    mkdir /dev/socket/qmux_radio 0775 radio radio
     mkdir /data/misc/radio/modem_config/mcfg_sw 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
     chmod 2770 /data/misc/radio/modem_config/mcfg_sw
@@ -630,7 +630,7 @@ on post-fs-data
     mkdir /data/usf 0700 system system
 
     # Z2G4-BSP-TS@lge.com make directory for sns.reg used by sensordaemon
-    mkdir /sns/cal/ 0644 system system
+    mkdir /sns/cal/ 0774 system system
     restorecon_recursive /sns
 
 service ssr_setup /system/bin/ssr_setup
