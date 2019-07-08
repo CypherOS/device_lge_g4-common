@@ -26,18 +26,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-start_copying_prebuilt_qcril_db()
-{
-    if [ -f /system/vendor/qcril.db -a ! -f /system/etc/motorola/qcril.db ]; then
-        mkdir /system/etc/motorola
-        chown -h radio:radio /system/etc/motorola
-        chmod 770 /system/etc/motorola
-        cp /system/vendor/qcril.db /system/etc/motorola/qcril.db
-        chown -h radio.radio /system/etc/motorola/qcril.db
-        chmod 770 /system/etc/motorola/qcril.db
-    fi
-}
-start_copying_prebuilt_qcril_db
 #
 # start ril-daemon only for targets on which radio is present
 #
@@ -49,6 +37,7 @@ case "$baseband" in
     "apq")
     setprop ro.radio.noril yes
     stop ril-daemon
+    stop real-ril-daemon
 esac
 
 case "$baseband" in
