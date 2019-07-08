@@ -745,11 +745,6 @@ service irsc_util /system/vendor/bin/irsc_util "/etc/sec_config"
     user root
     oneshot
 
-service qcom-c_main-sh /system/vendor/bin/init.class_main.sh
-    class main
-    user root
-    oneshot
-
 service baseband-sh /system/vendor/bin/init.baseband.sh
     class late_start
     user root
@@ -862,6 +857,44 @@ service sensors /system/vendor/bin/sensors.qcom
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
     stop netmgrd
+
+# Depending the LG G4 variant start|stop qmux and ril
+on property:ro.baseband=msm
+    start qmuxd
+on property:ro.baseband=apq
+    stop ril-daemon
+    stop real-ril-daemon
+on property:ro.baseband=svlte2a
+    start qmiproxy
+on property:ro.baseband=csfb
+    start qmiproxy
+on property:ro.baseband=sglte
+    start qmiproxy
+on property:ro.baseband=sglte2
+    start qmiproxy
+on property:ro.baseband=dsda2
+    setprop persist.radio.multisim.config dsda
+
+# If multisim
+on property:persist.radio.multisim.config=dsds
+    start ril-daemon2
+on property:persist.radio.multisim.config=dsda
+    start ril-daemon2
+    start ril-daemon3
+# If single sim
+on property:persist.radio.multisim.config=""
+    start ril-daemon
+    start real-ril-daemon
+
+# Datamode
+on property:persist.data.mode=tethered
+    start qti
+    start port-bridge
+on property:persist.data.mode=concurrent
+    start qti
+    start netmgrd
+on property:persist.data.mode=*
+    start netmgrd
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
