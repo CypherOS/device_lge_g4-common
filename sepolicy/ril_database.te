@@ -1,0 +1,1 @@
+allow ril_database system_device:file { rw_file_perms create_file_perms };
