@@ -40,8 +40,8 @@
 /(vendor|system/vendor)/bin/bdaddr_loader                u:object_r:bdaddr_loader_exec:s0
 /(vendor|system/vendor)/bin/init\.msm8992\.sensor\.sh    u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/init\.qcom\.qseecomd\.sh     u:object_r:qti_init_shell_exec:s0
-/system/etc/motorola(/.*)?                               u:object_r:ril_database:s0
-/system/bin/wrild.sh                                     u:object_r:wrild_exec:s0
+/(vendor|system/vendor)/bin/wrild.sh                     u:object_r:wrild_exec:s0
+/(vendor|system/vendor)/etc/motorola(/.*)?               u:object_r:ril_database:s0
 
 ###################################
 # Data System files
