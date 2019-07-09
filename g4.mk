@@ -153,6 +153,7 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
     init.qcom.coex.sh \
     init.qcom.fm.sh \
+    init.class_main.sh \
     init.qcom.post_boot.sh \
     init.qcom.uicc.sh \
     init.msm8992.sensor.sh \

@@ -26,7 +26,7 @@ type debugfs_rmt, debugfs_type, fs_type;
 type debugfs_rfs, debugfs_type, fs_type;
 
 # Flashlight
-type flashlight_app_data_file, sysfs_type, fs_type;
+type flashlight_app_data_file, sysfs_type, fs_type;;
 
 # wrild
 #type ril_daemon, sysfs_type, fs_type;

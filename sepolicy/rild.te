@@ -13,8 +13,8 @@ allow rild servicemanager:binder call;
 allow rild smem_log_device:chr_file { read write ioctl open };
 
 allow rild system_device:file write;
-+allow rild ril_database:file { create_file_perms x_file_perms };
-+allow rild ril_database:dir { rw_dir_perms create_dir_perms };
+allow rild ril_database:dir { search write add_name remove_name read };
+allow rild ril_database:file { read write open create getattr setattr unlink lock ioctl };
 
 allow rild binder_per_mgr_service:service_manager find;
 

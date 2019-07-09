@@ -46,7 +46,7 @@ allow wrild shell_exec:file { getattr read };
 allow wrild surfaceflinger:file read;
 allow wrild system_file:file { entrypoint execute_no_trans };
 allow wrild tee:dir getattr;
-allow wrild tee:file { read open };
+allow wrild tee:file read;
 allow wrild thermalserviced:file read;
 allow wrild thermal-engine:file read;
 allow wrild toolbox_exec:file { execute execute_no_trans getattr open read };
