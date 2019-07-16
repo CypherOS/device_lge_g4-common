@@ -1,5 +1,6 @@
 allow untrusted_app sysfs_switch:dir search;
 allow untrusted_app sysfs_graphics:dir search;
+allow untrusted_app unlabeled:dir search;
 allow untrusted_app proc_qtaguid_stat:file { getattr open read };
 allow untrusted_app proc_zoneinfo:file { getattr open read };
 allow untrusted_app proc_vmstat:file { open getattr read };
