@@ -41,16 +41,16 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>3</item>
-        <item>9</item>
-        <item>32</item>
-        <item>79</item>
-        <item>156</item>
-        <item>308</item>
-        <item>601</item>
-        <item>1157</item>
-        <item>2319</item>
-        <item>4763</item>
+        <item>10</item>
+        <item>20</item>
+        <item>60</item>
+        <item>80</item>
+        <item>160</item>
+        <item>320</item>
+        <item>640</item>
+        <item>1200</item>
+        <item>3000</item>
+        <item>5600</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -58,8 +58,8 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
+        <item>20</item>
         <item>50</item>
-        <item>72</item>
         <item>85</item>
         <item>106</item>
         <item>121</item>
@@ -93,7 +93,7 @@
 
     <!-- Default screen brightness setting.
          Must be in the range specified by minimum and maximum. -->
-    <integer name="config_screenBrightnessSettingDefault">82</integer>
+    <integer name="config_screenBrightnessSettingDefault">65</integer>
 
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
