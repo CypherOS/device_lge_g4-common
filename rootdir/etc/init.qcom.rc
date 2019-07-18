@@ -876,7 +876,7 @@ service real-ril-daemon /system/vendor/bin/hw/rild
 service ril-daemon /system/vendor/bin/wrild.sh
     user root
     seclabel u:r:wrild:s0
-    disabled
+    oneshot
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
