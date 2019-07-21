@@ -35,7 +35,7 @@ allow wrild logd:file { read open };
 allow wrild mm-pp-daemon:file read;
 allow wrild mediadrmserver:file read;
 allow wrild netd:dir { getattr search };
-allow wrild netd:file read;
+allow wrild netd:file { read open };
 allow wrild property_socket:sock_file write;
 allow wrild rmt_storage:file read;
 allow wrild rfs_access:file read;
