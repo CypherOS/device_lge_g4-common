@@ -1,5 +1,15 @@
 <manifest version="1.0" type="device" target-level="legacy">
     <hal format="hidl">
+        <name>vendor.aoscp.displayengine</name>
+        <transport arch="32+64">passthrough</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IDisplayModes</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IDisplayModes/default</fqname>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport arch="32+64">passthrough</transport>
         <version>2.0</version>
