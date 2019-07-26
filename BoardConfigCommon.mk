@@ -224,6 +224,8 @@ TARGET_LD_SHIM_LIBS := \
 USE_DEVICE_SPECIFIC_THERMAL := true
 
 # Wifi
+CONFIG_WIFI_DISPLAY := true
+CONFIG_NO_CTRL_IFACE := true
 NO_WLAN_STATS := true
 BOARD_WLAN_DEVICE := bcmdhd
 BOARD_HOSTAPD_DRIVER := NL80211
@@ -235,6 +237,7 @@ WIFI_DRIVER_FW_PATH_P2P := "/system/vendor/etc/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA := "/system/vendor/etc/firmware/fw_bcmdhd.bin"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+WPA_SUPPLICANT_USE_HIDL := y
 
 # inherit from the proprietary version
 -include vendor/lge/g4-common/BoardConfigVendor.mk
