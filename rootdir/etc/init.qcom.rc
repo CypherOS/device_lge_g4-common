@@ -1003,7 +1003,7 @@ service energy-awareness /system/vendor/bin/energy-awareness
     group system
     oneshot
 
-service hwaddrs /system/bin/hwaddrs
+service hwaddrs /system/vendor/bin/hwaddrs
     class core
     user root
     group system wifi
