@@ -393,3 +393,7 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:/system/vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
+
+# Prebuilt APPS
+PRODUCT_PACKAGES += \
+    AuroraStore
