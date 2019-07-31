@@ -60,6 +60,7 @@ allow wrild vndservicemanager:dir { getattr search };
 allow wrild vndservicemanager:file { open read };
 allow wrild vold:dir { getattr search };
 allow wrild vold:file { read open };
+allow wrild zygote:dir { getattr search };
 allow wrild zygote:file read;
 allow wrild incidentd:file read;
 allow wrild mediacodec:file read;
