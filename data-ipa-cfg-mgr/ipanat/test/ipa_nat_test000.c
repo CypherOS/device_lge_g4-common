@@ -42,7 +42,7 @@
 #include "ipa_nat_test.h"
 #include "ipa_nat_drv.h"
 
-int ipa_nat_test000(int total_entries, u32 tbl_hdl, u8 sep)
+int ipa_nat_test000(int total_entries, u32 tbl_hdl)
 {
 
 	int ret;

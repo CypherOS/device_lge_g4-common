@@ -73,9 +73,6 @@
  }
 #endif
 
-#define IPADBG(fmt, args...) printf(" %s:%d " fmt, __FUNCTION__, __LINE__, ## args)
-#define IPAERR(fmt, args...) printf(" %s:%d " fmt, __FUNCTION__, __LINE__, ## args)
-
 #define NAT_DUMP
 int ipa_nat_validate_ipv4_table(u32);
 
