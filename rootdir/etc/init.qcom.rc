@@ -202,9 +202,6 @@ on boot
 
     setprop ro.telephony.call_ring.multiple false
 
-    # Remove SUID bit for iproute2 ip tool
-    chmod 0755 /system/bin/ip
-
 #   Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.default 4096,87380,524288,4096,16384,110208
@@ -451,7 +448,6 @@ on post-fs
     chmod 0440 /proc/slabinfo
 
     chown system carrier /carrier
-    chmod 0771 /carrier
 
     # restorecon carrier partition
     restorecon_recursive /carrier
@@ -464,8 +460,6 @@ on post-fs
 
 # msm specific files that need to be created on /data
 on post-fs-data
-    start hrdump
-
     start qseecomd
     # busy loop to wait for qseecomd started
     exec - root root system -- /system/vendor/bin/init.qcom.qseecomd.sh
@@ -975,7 +969,6 @@ on property:init.svc.bootanim=running
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
 on property:init.svc.bootanim=stopped
-    start usf-post-boot
     stop cameraserver
     start cameraserver
 
