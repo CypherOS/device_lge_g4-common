@@ -30,6 +30,14 @@ LOCAL_SRC_FILES += \
     loc_core_log.cpp
 
 LOCAL_CFLAGS += \
+     -Wno-missing-field-initializers \
+     -Wno-unused-const-variable \
+     -Wno-mismatched-tags \
+     -Wno-unneeded-internal-declaration \
+     -Wno-overloaded-virtual \
+     -Wno-reorder \
+     -Wno-format \
+     -Wno-unused-parameter \
      -fno-short-enums \
      -D_ANDROID_
 
