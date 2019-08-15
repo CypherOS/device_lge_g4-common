@@ -5,6 +5,14 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+LOCAL_CFLAGS += \
+    -Wno-format \
+    -Wno-missing-field-initializers \
+    -Wno-missing-braces \
+    -Wno-macro-redefined \
+    -Wno-unused-variable \
+    -Wno-unused-parameter
+
 ## Libs
 LOCAL_SHARED_LIBRARIES := \
     libutils \
@@ -26,6 +34,10 @@ LOCAL_SRC_FILES += \
 
 # Flag -std=c++11 is not accepted by compiler when LOCAL_CLANG is set to true
 LOCAL_CFLAGS += \
+     -Wno-unused-variable \
+     -Wno-unused-parameter \
+     -Wno-null-conversion \
+     -Wno-macro-redefined \
      -fno-short-enums \
      -D_ANDROID_
 

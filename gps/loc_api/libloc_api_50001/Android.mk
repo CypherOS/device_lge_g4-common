@@ -35,6 +35,14 @@ LOCAL_SRC_FILES += \
     loc_eng_dmn_conn_glue_pipe.c
 
 LOCAL_CFLAGS += \
+     -Wno-unused-variable \
+     -Wno-reorder \
+     -Wno-mismatched-tags \
+     -Wno-unused-parameter \
+     -Wno-null-conversion \
+     -Wno-format \
+     -Wno-sign-compare \
+     -Wno-unused-function \
      -fno-short-enums \
      -D_ANDROID_
 
