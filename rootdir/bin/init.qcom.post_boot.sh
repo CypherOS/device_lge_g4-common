@@ -176,6 +176,19 @@ case "$target" in
         ;;
 esac
 
+if [ -f /sys/devices/soc0/soc_id ]; then
+        soc_id=`cat /sys/devices/soc0/soc_id`
+else
+        soc_id=`cat /sys/devices/system/soc/soc0/id`
+fi
+
+case "$soc_id" in
+        "277" | "278")
+        # Start energy-awareness for 8976
+        start energy-awareness
+        ;;
+esac
+
 # Enable QDSS agent if QDSS feature is enabled
 # on a non-commercial build.  This allows QDSS
 # debug tracing.
@@ -189,5 +202,3 @@ if [ -c /dev/coresight-stm ]; then
         fi
     fi
 fi
-
-
