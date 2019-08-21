@@ -22,4 +22,7 @@ LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_MODULE := lights.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_TAGS := optional
 
+LOCAL_CFLAGS += \
+     -Wno-unused-parameter
+
 include $(BUILD_SHARED_LIBRARY)
