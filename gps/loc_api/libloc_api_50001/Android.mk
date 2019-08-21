@@ -93,8 +93,11 @@ LOCAL_SRC_FILES += \
     gps.c
 
 LOCAL_CFLAGS += \
+    -Wno-format \
+    -Wno-mismatched-tags \
+    -Wno-unused-parameter \
     -fno-short-enums \
-    -D_ANDROID_ \
+    -D_ANDROID_
 
 ifeq ($(TARGET_BUILD_VARIANT),user)
    LOCAL_CFLAGS += -DTARGET_BUILD_VARIANT_USER
