@@ -95,7 +95,7 @@ PRODUCT_PACKAGES += \
 TARGET_PROVIDES_CONSUMERIR_HAL := true
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
-    consumerir.msm8992 
+    consumerir.msm8992
 
 # Display
 PRODUCT_PACKAGES += \
@@ -119,10 +119,6 @@ PRODUCT_PACKAGES += \
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl
-
-# F-droid
-WITH_FDROID := true
-$(call inherit-product-if-exists, vendor/fdroid/fdroid-vendor.mk)
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
