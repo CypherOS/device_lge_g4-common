@@ -92,7 +92,7 @@ F_RILRESTART(){
     x=$1
     while [ "$REQRESTART" -ne 0 ];do
         REQRESTART=$(F_RILCHK)
-    
+
         # PIN_REQUIRED means usually the user get prompted - unfortunately 
         # sometimes there is no prompt.
         # this will restart RIL not on the first but every second run only (which should be safe) and
@@ -105,7 +105,7 @@ F_RILRESTART(){
             x=1
         elif [ "$REQRESTART" -eq 1 ];then
             [ $WDDEBUG == 1 ] && F_LOG e "!!!! DEBUG MODE DEBUG MODE - NO ACTION TAKEN !!!!"
-            if [ -d /storage/emulated/0 ];then
+            if [ -d /storage/emulated/0 ]||[ril.qcril_pre_init_lock_held == 0];then
                 F_LOG w "RIL restart - try $x of $MAXRET"
                 [ $WDDEBUG == 0 ] && stop real-ril-daemon
                 sleep 1
