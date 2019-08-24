@@ -48,6 +48,7 @@ F_RILCHK(){
     ENC=$(getprop ro.crypto.state)
     ENCSTATE=$(getprop vold.decrypt)
     PROPSIM=$(getprop wrild.sim.count)
+    RILLOCK=$(ril.qcril_pre_init_lock_held)
     if [ -z "$PROPSIM" ];then
         SIMCOUNT=$(logcat -b all -d |egrep "insertedSimCount.*[01]" | egrep -o "[01]" | tail -n1)
         setprop wrild.sim.count $SIMCOUNT
@@ -77,6 +78,10 @@ F_RILCHK(){
         F_LOG i "LOADED but no operator yet .. sleeping 25s"
         sleep 25
         echo 1
+    elif [ "$RILLOCK" == "0" ];then
+        F_LOG i "LOADED but no operator .. sleeping 25s"
+        sleep 25
+        echo 1
     elif [ "$CURSTATE" == "LOADED" ] && [ ! -z "$CUROPER" ];then
         echo 0
     elif [ "$SIMCOUNT" == "0" ];then
@@ -92,8 +97,8 @@ F_RILRESTART(){
     x=$1
     while [ "$REQRESTART" -ne 0 ];do
         REQRESTART=$(F_RILCHK)
-    
-        # PIN_REQUIRED means usually the user get prompted - unfortunately 
+
+        # PIN_REQUIRED means usually the user get prompted - unfortunately
         # sometimes there is no prompt.
         # this will restart RIL not on the first but every second run only (which should be safe) and
         # let the user enough time to enter the PIN if the prompt appears
@@ -103,7 +108,7 @@ F_RILRESTART(){
         elif [ "$REQRESTART" -eq 7 ];then
             F_LOG i "Boot (still) in progress ... hanging around for 10s ..." && sleep 10
             x=1
-        elif [ "$REQRESTART" -eq 1 ];then
+        elif [ "$REQRESTART" -eq 1 ]||[ "$RILLOCK" -eq 0 ];then
             [ $WDDEBUG == 1 ] && F_LOG e "!!!! DEBUG MODE DEBUG MODE - NO ACTION TAKEN !!!!"
             if [ -d /storage/emulated/0 ];then
                 F_LOG w "RIL restart - try $x of $MAXRET"
@@ -173,7 +178,7 @@ F_LOGRIL(){
         TIMESTMP="$(date +%F)"
         logcat -b all -d -D >> $DOGLOGS/${TIMESTMP}_${LOGPID}_logcat.txt \
             && F_LOG w "woof: debug log written: $DOGLOGS/${TIMESTMP}_${LOGPID}_logcat.txt"
-        [ $WDDEBUG == 0 ] && logcat -b all -c && F_LOG w "woof: CLEARED LOGCAT" 
+        [ $WDDEBUG == 0 ] && logcat -b all -c && F_LOG w "woof: CLEARED LOGCAT"
         echo -e "\n\n$(date):\n\n $(dmesg -c)" >> $DOGLOGS/${TIMESTMP}_${LOGPID}_dmesg.txt && F_LOG w "woof: debug log written: $DOGLOGS/${TIMESTMP}_${LOGPID}_dmesg.txt"
         echo -e "\n\n$(date):\n\n $(ps -A)" >> $DOGLOGS/${TIMESTMP}_${LOGPID}_ps.txt && F_LOG w "woof: debug log written: $DOGLOGS/${TIMESTMP}_${LOGPID}_ps.txt"
     fi
@@ -188,7 +193,7 @@ F_WOOF(){
 	dpid="${dog/,*/}"
         dcpu=$(printf "%.0f" "${dog/*,/}")
 	# if we found a dog which breaks the threshold immediately inform the watch proc & catch logs
-	if [ "$dcpu" -ge "$TSCPU" ];then 
+	if [ "$dcpu" -ge "$TSCPU" ];then
             F_LOG w "woof: $dog - current cpu usage: $dcpu %, pid: $dpid"
             echo $dpid && return 3
         fi
@@ -252,6 +257,9 @@ while true; do
 	if [ "$WCNT" -gt 0 ];then
             [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
 	    F_LOG i "woof: rild ($DOGPID) eats more CPU than is good for us - over ${TSCPU}% ... (countdown: $WCNT)"
+        elif [ "$RILLOCK" -eq 0 ];then
+            [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
+            F_LOG i "woof: rild ($DOGPID) is dead. Restart it asap"
 	else
             [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
 	    # trigger and give it time to come back
@@ -263,7 +271,7 @@ while true; do
 	fi
     fi
     [ $WDDEBUG == 1 ] && WDFREQ=5
-    sleep $WDFREQ 
+    sleep $WDFREQ
 done
 
 #############################################################################################
