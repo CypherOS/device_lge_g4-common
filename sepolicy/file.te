@@ -14,6 +14,7 @@ type fsc_block_device, dev_type;
 type fsg_block_device, dev_type;
 
 type data_file, file_type, data_file_type;
+type hal_bootctl_socket, file_type;
 type touch_socket, file_type, mlstrustedobject;
 type ril_database, file_type, data_file_type;
 type vold_data, file_type, data_file_type, core_data_file_type;

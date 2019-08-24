@@ -61,7 +61,7 @@ PRODUCT_PACKAGES += \
 
 # Bootloader
 PRODUCT_PACKAGES += \
-    android.hardware.oemlock@1.0-service
+    android.hardware.oemlock@1.0
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -319,7 +319,7 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl
- 
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/sensor_def_common.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_common.conf \
     $(LOCAL_PATH)/sensors/sensor_def_variable.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_variable.conf \
