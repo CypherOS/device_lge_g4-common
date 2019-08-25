@@ -48,6 +48,8 @@ F_RILCHK(){
     ENC=$(getprop ro.crypto.state)
     ENCSTATE=$(getprop vold.decrypt)
     PROPSIM=$(getprop wrild.sim.count)
+    RADIOVAL=$(ril.radio.ctbk_val)
+
     if [ -z "$PROPSIM" ];then
         SIMCOUNT=$(logcat -b all -d |egrep "insertedSimCount.*[01]" | egrep -o "[01]" | tail -n1)
         setprop wrild.sim.count $SIMCOUNT
@@ -77,6 +79,10 @@ F_RILCHK(){
         F_LOG i "LOADED but no operator yet .. sleeping 25s"
         sleep 25
         echo 1
+    elif [ "$RADIOVAL" != "1,0,0,0,1,1,0,0,0,1,1,0,0" ];then
+        F_LOG i "LOADED but no operator .. sleeping 25s"
+        sleep 25
+        echo 1
     elif [ "$CURSTATE" == "LOADED" ] && [ ! -z "$CUROPER" ];then
         echo 0
     elif [ "$SIMCOUNT" == "0" ];then
@@ -92,8 +98,8 @@ F_RILRESTART(){
     x=$1
     while [ "$REQRESTART" -ne 0 ];do
         REQRESTART=$(F_RILCHK)
-    
-        # PIN_REQUIRED means usually the user get prompted - unfortunately 
+
+        # PIN_REQUIRED means usually the user get prompted - unfortunately
         # sometimes there is no prompt.
         # this will restart RIL not on the first but every second run only (which should be safe) and
         # let the user enough time to enter the PIN if the prompt appears
@@ -103,7 +109,7 @@ F_RILRESTART(){
         elif [ "$REQRESTART" -eq 7 ];then
             F_LOG i "Boot (still) in progress ... hanging around for 10s ..." && sleep 10
             x=1
-        elif [ "$REQRESTART" -eq 1 ];then
+        elif [ "$REQRESTART" -eq 1 ]||[ "$RADIOVAL" -ne "1,0,0,0,1,1,0,0,0,1,1,0,0" ];then
             [ $WDDEBUG == 1 ] && F_LOG e "!!!! DEBUG MODE DEBUG MODE - NO ACTION TAKEN !!!!"
             if [ -d /storage/emulated/0 ];then
                 F_LOG w "RIL restart - try $x of $MAXRET"
@@ -252,6 +258,9 @@ while true; do
 	if [ "$WCNT" -gt 0 ];then
             [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
 	    F_LOG i "woof: rild ($DOGPID) eats more CPU than is good for us - over ${TSCPU}% ... (countdown: $WCNT)"
+        elif [ "$RADIOVAL" -ne "1,0,0,0,1,1,0,0,0,1,1,0,0" ];then
+            [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
+            F_LOG i "woof: rild ($DOGPID) is dead. Resurrect it asap !!!!"
 	else
             [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
 	    # trigger and give it time to come back
@@ -263,7 +272,7 @@ while true; do
 	fi
     fi
     [ $WDDEBUG == 1 ] && WDFREQ=5
-    sleep $WDFREQ 
+    sleep $WDFREQ
 done
 
 #############################################################################################
