@@ -45,6 +45,7 @@
 /(vendor|system/vendor)/bin/init\.qcom\.qseecomd\.sh     u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/wrild.sh                     u:object_r:wrild_exec:s0
 /(vendor|system/vendor)/etc/motorola(/.*)?               u:object_r:ril_database:s0
+/(vendor|system/vendor)/etc/motorola                     u:object_r:ril_database:s0
 
 ###################################
 # Data System files
