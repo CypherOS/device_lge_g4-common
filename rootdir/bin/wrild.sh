@@ -79,10 +79,6 @@ F_RILCHK(){
         F_LOG i "LOADED but no operator yet .. sleeping 25s"
         sleep 25
         echo 1
-    elif [ "$RADIOVAL" != "1,0,0,0,1,1,0,0,0,1,1,0,0" ];then
-        F_LOG i "LOADED but no operator .. sleeping 25s"
-        sleep 25
-        echo 1
     elif [ "$CURSTATE" == "LOADED" ] && [ ! -z "$CUROPER" ];then
         echo 0
     elif [ "$SIMCOUNT" == "0" ];then
@@ -109,7 +105,7 @@ F_RILRESTART(){
         elif [ "$REQRESTART" -eq 7 ];then
             F_LOG i "Boot (still) in progress ... hanging around for 10s ..." && sleep 10
             x=1
-        elif [ "$REQRESTART" -eq 1 ]||[ "$RADIOVAL" -ne "1,0,0,0,1,1,0,0,0,1,1,0,0" ];then
+        elif [ "$REQRESTART" -eq 1 ];then
             [ $WDDEBUG == 1 ] && F_LOG e "!!!! DEBUG MODE DEBUG MODE - NO ACTION TAKEN !!!!"
             if [ -d /storage/emulated/0 ];then
                 F_LOG w "RIL restart - try $x of $MAXRET"
@@ -179,7 +175,7 @@ F_LOGRIL(){
         TIMESTMP="$(date +%F)"
         logcat -b all -d -D >> $DOGLOGS/${TIMESTMP}_${LOGPID}_logcat.txt \
             && F_LOG w "woof: debug log written: $DOGLOGS/${TIMESTMP}_${LOGPID}_logcat.txt"
-        [ $WDDEBUG == 0 ] && logcat -b all -c && F_LOG w "woof: CLEARED LOGCAT" 
+        [ $WDDEBUG == 0 ] && logcat -b all -c && F_LOG w "woof: CLEARED LOGCAT"
         echo -e "\n\n$(date):\n\n $(dmesg -c)" >> $DOGLOGS/${TIMESTMP}_${LOGPID}_dmesg.txt && F_LOG w "woof: debug log written: $DOGLOGS/${TIMESTMP}_${LOGPID}_dmesg.txt"
         echo -e "\n\n$(date):\n\n $(ps -A)" >> $DOGLOGS/${TIMESTMP}_${LOGPID}_ps.txt && F_LOG w "woof: debug log written: $DOGLOGS/${TIMESTMP}_${LOGPID}_ps.txt"
     fi
@@ -194,7 +190,7 @@ F_WOOF(){
 	dpid="${dog/,*/}"
         dcpu=$(printf "%.0f" "${dog/*,/}")
 	# if we found a dog which breaks the threshold immediately inform the watch proc & catch logs
-	if [ "$dcpu" -ge "$TSCPU" ];then 
+	if [ "$dcpu" -ge "$TSCPU" ];then
             F_LOG w "woof: $dog - current cpu usage: $dcpu %, pid: $dpid"
             echo $dpid && return 3
         fi
@@ -258,9 +254,10 @@ while true; do
 	if [ "$WCNT" -gt 0 ];then
             [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
 	    F_LOG i "woof: rild ($DOGPID) eats more CPU than is good for us - over ${TSCPU}% ... (countdown: $WCNT)"
-        elif [ "$RADIOVAL" -ne "1,0,0,0,1,1,0,0,0,1,1,0,0" ];then
+        elif [ $RADIOVAL != 1,0,0,0,1,1,0,0,0,1,1,0,0 ]||[ $RADIOVAL != 0,0,0,0,0,0,0,0,0,1,1,0,0 ]||[ $RADIOVAL != 1,0,0,0,0,0,0,0,0,0,1,0,0 ];then
             [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
             F_LOG i "woof: rild ($DOGPID) is dead. Resurrect it asap !!!!"
+            REQRESTART=1
 	else
             [ $WDDEBUG == 1 ] && F_LOG e "woof: !!!! DEBUG MODE DEBUG MODE !!!!"
 	    # trigger and give it time to come back
