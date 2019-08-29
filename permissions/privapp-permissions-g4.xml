@@ -4,6 +4,10 @@
         <permission name="android.permission.CONTROL_LOCATION_UPDATES"/>
     </privapp-permissions>
 
+    <privapp-permissions package="com.android.location.fused">
+        <permission name="android.permission.CONTROL_LOCATION_UPDATES"/>
+    </privapp-permissions>
+
     <privapp-permissions package="com.qualcomm.qcrilmsgtunnel">
         <permission name="android.permission.INTERACT_ACROSS_USERS"/>
     </privapp-permissions>
@@ -11,6 +15,10 @@
     <privapp-permissions package="com.aurora.store">
         <permission name="android.permission.DELETE_PACKAGES"/>
         <permission name="android.permission.INSTALL_PACKAGES"/>
+    </privapp-permissions>
+
+    <privapp-permissions package="com.abhi.flashlight">
+        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.google.android.googlequicksearchbox">
